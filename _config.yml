@@ -1,3 +1,4 @@
+baseurl: http://blog.jameschevalier.us
 exclude: [Rakefile, README.md]
 lsi: true
 permalink: /:title
