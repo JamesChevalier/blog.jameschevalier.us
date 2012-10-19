@@ -1,0 +1,36 @@
+---
+layout: post
+title: ! 'Twilio Idea: Worldwide Game Of Chinese Whispers'
+tags:
+- chinese-whispers
+- game
+- phone-call
+- sms
+- telephone
+- twilio
+status: draft
+published: false
+---
+<p>I've been working on this broadcast message system I'm testing with a local dance studio (I'll be opening the service to the public after it's tested). While working on this, I realized that the recording/broadcast pieces in Twilio are <strong>completely</strong> separate from either other ... A person can call, record a message, and have it broadcast to hundreds of people without having to wait for all the calls to go through.</p>
+
+<p>I thought about this aspect of broadcast messages a bit, and I think I see a way to make a global "Chinese Whispers" or "Telephone" type game...</p>
+
+<p>The game begins like this:</p>
+<ol>
+	<li>The first person calls the Twilio number</li>
+	<li>The app has you enter the phone number of the next person to play the game</li>
+	<li>You have 10 (?) seconds to tell part of a story</li>
+	<li>The phone number you entered is dialed after your time is up</li>
+</ol>
+
+<p>The story continues (forever?) like this (the order can probably be modified a bit):</p>
+<ol>
+	<li>A person receives the phone call from this app</li>
+	<li>The app has them enter the phone number of the next person to play the game</li>
+	<li>The previous person's 10 (?) second clip is played</li>
+	<li>This person's 10 second story clip is recorded</li>
+	<li>The app immediately sends off the call to the number in the background</li>
+	<li>This person's call continues, playing the story over from the very beginning</li>
+</ol>
+
+<p>I honestly don't think it's a good idea to implement (at least as-is), because of how much this would eventually cost.  Without some sort of 'end' to the game, calls could eventually turn into hours-long stories.</p>

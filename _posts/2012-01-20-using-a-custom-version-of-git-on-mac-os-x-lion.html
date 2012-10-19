@@ -1,0 +1,26 @@
+---
+layout: post
+title: Using a custom version of Git on Mac OS X Lion
+tags:
+- developer-tools
+- development
+- git
+- lion
+- mac
+- mac-os
+- mac-os-x
+- nano
+- os-x
+- terminal
+- xcode
+- xcode-developer-tools
+published: true
+alias: [/thoughts/using-a-custom-version-of-git-on-mac-os-x-lion/]
+---
+<p>If you're using <a title="git-osx-installer" href="http://code.google.com/p/git-osx-installer/" target="_blank">git-osx-installer</a> to install <a title="Git" href="http://git-scm.com/" target="_blank">Git</a> on Mac OS X Lion, and 'git --version' in Terminal isn't displaying the version you've just installed, then your system is using the version of Git that's provided by <a title="Xcode Developer Tools" href="http://developer.apple.com/technologies/tools/" target="_blank">Xcode Developer Tools</a>.</p>
+
+<p>To use the git-osx-installer version that you've just installed, you'll need to edit the <em>/etc/paths</em> file and add "/usr/local/git/bin" to the top of that file.</p>
+
+<p>To open the file for editing, type <code>sudo nano /etc/paths</code> in Terminal.  Add the "/usr/local/git/bin" line to the top of the file.  To write the file, and exit nano after making that change, type <code>Control-O</code> then <code>Control-X</code>. To allow the change to take place, you'll need to quit Terminal, then open it back up again.</p>
+
+<p><code>git --version</code> should now report the newly installed git-osx-installer version of Git.</p>

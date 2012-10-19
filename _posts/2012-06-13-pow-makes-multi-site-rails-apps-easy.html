@@ -1,0 +1,19 @@
+---
+layout: post
+title: Pow makes multi-site Rails apps EASY
+tags:
+- common-media
+- development
+- pow
+- rails
+- ruby
+- ruby-on-rails
+- stack-overflow
+published: true
+alias: [/thoughts/pow-makes-multi-site-rails-apps-easy/]
+---
+<p>I wrote my first blog post at <a href="http://commonmediainc.com" TARGET="_blank">work</a> the other day. It's about how to serve multi-site Rails apps (where one Rails app serves multiple different sites that are available at different domains), and how to use <a href="http://pow.cx" TARGET="_blank">Pow</a> to make it easy.</p>
+
+<p>The whole thing really stemmed from my own question on <a href="http://stackoverflow.com" TARGET="_blank">Stack Overflow</a>, where I asked if it was possible to use Pow's .powrc file to pass session variables to Rails based on the URL being accessed. It turns out that I conceptualized the action (determining the URL being accessed) in the wrong place - it's better to do that on the Rails side, not on Pow's side. Anyway, you can read all about that <a href="http://stackoverflow.com/questions/10954945/is-it-possible-to-use-the-powrc-file-to-pass-session-variables-to-rails-based-o" TARGET="_blank">here</a>.</p>
+
+<p>The end result is a description of how to use one Rails app to host multiple sites, how to switch between the different sites, and then how to automate the whole thing so you don't have to manually change the sites that Rails serves. If you're into that sort of thing, you can read it <a href="http://commonmediainc.com/blog/how-serve-multi-site-rails-apps-and-use-pow-make-it-easy" TARGET="_blank">here</a>.</p>

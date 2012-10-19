@@ -1,0 +1,52 @@
+---
+layout: post
+title: I put together the site for JeffreyB Photography
+tags:
+- api
+- css3
+- design
+- development
+- flickr
+- github
+- holyoke
+- html5
+- open-source
+- open-source-software
+- photographer
+- photography
+- php
+- project
+- usability
+- westernma
+published: true
+alias: [/web-project/i-put-together-the-site-for-jeffreyb-photography/]
+---
+<p>I spent my free time from Monday March 26th to Friday March 30th putting together the website for one of the best photographers in Holyoke - Jeffrey Byrnes. It's live now at <a href="http://jeffreybphotography.com" title="JeffreyB Photography" target="_blank">http://jeffreybphotography.com</a>.</p>
+
+<p>Jeff had been struggling with his site for a while, because of how difficult it can be to get the code right. It's especially important for his site because of how much it relies on the presentation - his work <strong>is</strong> the imagery, after all. So, I created the site with two major areas of focus:</p>
+<ol>
+<li><strong>The site should be easy to use.</strong> He's a photographer - he should be making &amp; displaying photographs, not fiddling with lines of code to get webpages to display correctly.</li>
+<li><strong>The site should highlight his photographs as strongly as possible.</strong> Jeff's work is visually impacting, so I really felt that the site needed to get out of the way of his images as much as possible.</li>
+</ol>
+
+<p>I used <a href="http://buildinternet.com/" title="BuildInternet" target="_blank">BuildInternet's</a> <a href="http://www.buildinternet.com/project/supersized/" title="BuildInternet's Supersized jQuery plugin" target="_blank">Supersized jQuery plugin</a> as the basis for the overall site design as well as the slideshow functionality. I had originally chose to work with the Supersized jQuery plugin because of its full-screen slideshow. It sets the image to the full size of the browser, and includes a small set of controls at the bottom of the screen ... nothing more. This was perfect for one of my focuses - the site getting out of the way of the images. After working with the plugin a bit more, I realized that it had the capability of hooking into Flickr. That's when I realized it was also a perfect fit for my other focus - Jeff already used Flickr extensively, and in a very organized fashion.</p>
+
+<p>I did have to make some modifications to the plugin, though. Originally, there were some UI elements that sat on top of the images - these provided forward/backward navigation through the image slideshows. I also didn't want to complicate the controls by including a set of navigation for thumbnails (basically, a second area of navigation on top of the existing full-size image navigation - it just made things a little more apparent than I wanted them to be for this site). So, after modifying the control set at the bottom of the page, I was ready to figure out how to display the pages that required a bit more content...</p>
+
+<p>The About, Contact, and Projects pages are all single-image pages with their own content. I didn't want to give up the ascetic of the site for these three pages, so I needed to figure out a way to overlay the content onto the page. I was lucky, because I had already figured out a way to accomplish this a few months ago - I even had two ways to do this.
+
+<p>One by using a set of layered divs:</p>
+{% gistnocache 1506483 transparency.html %}
+
+<p>One by using CSS3 rgba backgrounds:</p>
+{% gistnocache 1506869 transparency.html %}
+
+<p>I plugged in my code &amp; had some awesome opaque boxes for the content to sit in - perfect - you can read the content just fine, and the background image still comes through.</p>
+
+<p>Maintaining the site can't get much easier for Jeff, either - which was my other area of focus. Now he doesn't have to fight with code, and his overall workflow isn't changed either. All he has to do is maintain his Flickr Sets, which he does anyway. The site automatically connects into his Flickr account through the Flickr API to display the correct set of images for each page - it goes so far as to allow him to modify his Flickr Sets &amp; have his changes be visible on his site <strong>immediately</strong>.</p>
+
+<p>While working with that Flickr connection, I found a bug in how the plugin attempted to get the owner of Flickr photos. This was causing all of the photo links to go to error pages on Flickr, instead of the photo's Flickr page. Supersized is open source software that's hosted on <a href="https://github.com" title="GitHub" target="_blank">GitHub</a>, so I was able to submit <a href="https://github.com/buildinternet/supersized/pull/66" title="My Supersized Flickr Fix" target="_blank">the fix</a> that I came up with.</p>
+
+<p>This was an exciting project for me because of its pace, because of how easy it is to work with Jeff, and because of how much impact my work has (and will have) on everyone who comes to Jeff's site to appreciate his work.</p>
+
+<p>JeffreyB Photography is located in the heart of downtown Holyoke. If you need photos, you need Jeff - you can get his contact information right from his <a href="http://jeffreybphotography.com/contact" title="Contact JeffreyB Photography" target="_blank">amazing website</a>. ;-)</p>

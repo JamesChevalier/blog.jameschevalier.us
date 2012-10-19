@@ -1,0 +1,32 @@
+---
+layout: post
+title: My Open Source 'Viral Launching Soon' Project
+tags:
+- design
+- forkly
+- github
+- launch
+- launch-soon
+- launchrock
+- mysql
+- open-source
+- php
+- project
+- viral
+published: true
+alias: [/web-project/my-open-source-viral-launching-soon-project/]
+---
+<p>I really like the "viral launching soon page" that <a href="http://launchrock.com" target="_BLANK">LaunchRock</a> is doing, which started for them with Forkly's <a href="http://blog.forkly.com/post/2341870004/a-viral-launching-soon-form" target="_BLANK">invite page</a>. I decided to see if I could make something similar as part of my ongoing learn-by-doing attempt at web development, and it works (at least in that it isn't broken)!</p>
+
+<p>So what I've created is <a href="https://github.com/JamesChevalier/Launch-Soon" target="_BLANK">Launch Soon</a>, a drop-in PHP site that provides a viral launching soon page to collect users (well, their email addresses) before your actual launch date. The site is fairly standard in that it's collecting email addresses, but it also provides a unique URL to each user which keeps track of how many people they get to sign up. The idea is that you'll give preferential access to those who gather the most invites.</p>
+
+<p>This is an early release, so there's still a lot of customization that hasn't been added in yet. The design is really nice, though! It's the result of me converting <a href="http://twitter.com/melchoyce">Mel Choyce</a>'s PSD file into CSS, which was yet another first for me. A huge thanks to her for saving me on this one!</p>
+
+<p>It works by taking a person's email address, and creating a four-character hash out of it. It then inserts the email address, the hash, a zeroed 'invites' field into a mysql database. The hash is used for this user's custom URL, which is used to keep track of their invites. When a person joins through a hashed URL, it will search the database for that hash, and increment the 'invites' field for that other user. The idea is that the people who drum up the most invites will have preferred entry into your project.</p>
+
+<p>This also seemed like a great opportunity to create my first github repository, so this project is available for download or collaboration <a href="https://github.com/JamesChevalier/Launch-Soon" target="_BLANK">here</a>. Ideally, someone out there will be able to use it as-is ... Or maybe someone will get some use out of it after some modification ... At the very least, I might get some constructive criticism.</p>
+
+<p>Oh, and here's an example of the project in the wild: <a href="http://feebaloo.com" target="_BLANK">feebaloo</a> (which is another idea of mine - A network for developers who need beta testers of proven quality, and users who aren't satisfied with just consuming).</p>
+
+<h4>Update:</h4>
+<p>I've re-written Launch Soon with <a href="http://rubyonrails.org/" target="_BLANK">Ruby on Rails</a>, connected it to <a href="http://mailchimp.com" target="_BLANK">Mailchimp</a>, and made it easy to deploy with <a href="http://heroku.com">Heroku</a>. Read more about it <a href="/web-project/launch-soon-is-a-heroku-ready-viral-coming-soon-page/">here</a>, or check it out <a href="https://github.com/JamesChevalier/Launch-Soon" target="_BLANK">here</a>.</p>

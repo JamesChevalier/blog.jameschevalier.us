@@ -1,0 +1,32 @@
+---
+layout: post
+title: View the changes between two branches of a git repository in SourceTree
+tags:
+- developer-tools
+- development
+- git
+- github
+- mac
+- sourcetree
+published: true
+alias: [/thoughts/view-the-changes-between-two-branches-of-a-git-repository-in-sourcetree/]
+---
+<p>I use <a title="Git" href="http://git-scm.com/" target="_blank">git</a> for all my projects, because of how easy it is to deploy new versions &amp; because of how easy it is to maintain two (or more) different versions of one project. I'll be talking a little bit about that second feature in this post.</p>
+
+<p>I typically separate my projects into two branches:</p>
+<ul>
+	<li>The Master branch is the production branch. This is the "<a title="Nigel's Guitar Room" href="http://youtu.be/g7-5io1muSQ" target="_blank">Look... still has the old tag on, never even played it. Don't touch it! Don't point! It can't be played. That's it, you've seen enough of that one.</a>" branch.</li>
+	<li>I create a second branch just for development, which is where I do all my actual work.</li>
+</ul>
+
+<p>I don't make any actual commits to the Master branch. All of my work is done within the development branch, and I merge the development branch into the Master branch when I'm ready to deploy a release. Sometimes I'll work so much on the development branch that I'll forget all the changes that I've made since the last merge. If that happens, I turn to SourceTree so that I can view the differences between the last merge and the merge I'm about to complete. To do that, I open the repository in <a title="SourceTree" href="http://www.sourcetreeapp.com/" target="_blank">SourceTree</a> (free in the <a title="SourceTree in the Mac App Store" href="http://click.linksynergy.com/fs-bin/click?id=vwHUN9G4nyY&amp;subid=&amp;offerid=146261.1&amp;type=10&amp;tmpid=3909&amp;RD_PARM1=http%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fsourcetree-git-hg%2Fid411678673%3Fmt%3D12" target="_blank">Mac App Store</a>) and click on a branch:</p>
+
+<p style="text-align:center;"><img title="Select A Branch" src="{{ site.baseurl }}/assets/attachments/st01.png" alt="" /><br /><small>Select A Branch</small></p>
+
+<p>This displays all of the commits for all branches in the top middle window pane. You can kind of see the dev branch in the screen shot above, which is in blue. When I scroll down through the list of commits, I eventually come to the last time that I merged the development branch into the Master branch. This is the last "release version" of the project &amp; I select this entry by clicking it:</p>
+
+<p style="text-align:center;"><img title="Select the previous merge" src="{{ site.baseurl }}/assets/attachments/st02.png" alt="" /><br /><small>Select the previous merge</small></p>
+
+<p>Then I scroll all the way back up to the top of the list of commits. I ⌘-click (command-click ... pretzel-click ... however you refer to it) the very latest commit. This displays, in the bottom left window pane, a list of files that were changed between the last merge and the latest commit. I click through each file, which displays the line-by-line changes in the bottom right window pane, double checking all the changes in order to remind myself of everything I've done. This helps me remember whether I've made any drastic changes that will require further action surrounding deployment.</p>
+
+<p>After I'm comfortable with the changes that will go through, I go back to the <a title="GitHub for Mac" href="http://mac.github.com/" target="_blank">GitHub Mac App</a>. I'm much more comfortable doing the actual git work with this app, because of how simple it is. I don't have a very in-depth knowledge of git, and the <a title="GitHub" href="https://github.com/" target="_blank">GitHub</a> App really keeps me from being able to do much harm.</p>
