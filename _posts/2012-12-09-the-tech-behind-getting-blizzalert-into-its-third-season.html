@@ -1,0 +1,41 @@
+---
+layout: post
+title: The tech behind getting Blizzalert into its third season
+published: true
+tags:
+- api
+- blizzalert
+- noaa
+- ruby
+- ruby-on-rails
+- ski
+- ski-area
+- sms
+- snowboard
+- snowfall
+- stripe
+- text-message
+- twilio
+- weather
+---
+<p>I've re-launched <a href="https://blizzalert.com" target="_blank">Blizzalert</a> for its third season!</p>
+
+<p>Blizzalert is a web service that provides snowfall omniscience via SMS. It monitors the weather at over <a href="https://blizzalert.com/mountains" target="_blank">400 mountains</a> across the United States, keeping track of snowfall. You select which mountains you want to watch, and Blizzalert sends text messages letting you know how much snow is coming, where, and when - all before it happens. I wrote a bit about the internals in my post <a href="http://blog.jameschevalier.us/never-miss-new-snow-with-blizzalert/">Never Miss New Snow With Blizzalert</a>.</p>
+
+<p>This re-launch is exciting, because I've completely re-written the site &amp; service. It's now a <a href="http://rubyonrails.org/" target="_blank">Ruby on Rails</a> app, and I'm using <a href="http://foundation.zurb.com" target="_blank">Foundation</a> to make the site responsive - it looks great on desktop computers, tablets, and phones.</p>
+
+<p>Blizzalert still uses the <a href="http://www.weather.gov/" target="_blank">National Oceanic and Atmospheric Administration</a>'s <a href="http://graphical.weather.gov/xml/" target="_blank">API</a> to monitor the weather at all of the areas, and it still uses <a href="http://www.twilio.com/" target="_blank">Twilio</a> to send text messages to customers. The rest of the site is completely overhauled, because of my migration from <a href="http://php.net/" target="_blank">PHP</a>/<a href="http://codeigniter.com" target="_blank">CodeIgniter</a> to Ruby on Rails.</p>
+
+<p>
+  I was able to use a number of <a href="http://rubygems.org/" target="_blank">Ruby gems</a> to make development easier. Here are some of the gems that were particularly helpful, and how they helped:
+  <ul>
+    <li><a href="http://rubygems.org/gems/airbrake" target="_blank">airbrake</a><br /><em>Send your application errors to our hosted service and reclaim your inbox.</em><br />I'm using the airbrake gem, and sending all of my error logs to my own instance of <a href="https://github.com/errbit/errbit" target="_blank">Errbit</a> that I've got running on <a href="http://www.heroku.com/" target="_blank">Heroku</a>. Errbit is indispensible for running Rails apps - use it or something like it to make error handling in production a snap.</li>
+    <li><a href="http://rubygems.org/gems/combined_time_select" target="_blank">combined_time_select</a><br /><em>Generates a time_select field like Google calendar.</em><br />This was pretty useful for creating a nice form for time input, which I need to give people a way to choose their earliest blizzalert time.</li>
+    <li><a href="http://rubygems.org/gems/newrelic_rpm" target="_blank">newrelic_rpm</a><br /><em>New Relic is a performance management system, developed by New Relic, Inc. New Relic provides you with deep information about the performance of your web application as it runs in production. The New Relic Ruby Agent is dual-purposed as a either a Gem or plugin.</em><br />If you're building/running a site, you need to be using New Relic. The visibility into your app/server that this service provides is amazing, and web developers are blind without it.</li>
+    <li><a href="http://rubygems.org/gems/phone" target="_blank">phone</a><br /><em>Phone number parsing, validation and formatting.</em><br />This was really useful to normalize all phone numbers coming into Blizzalert, and for displaying them nicely on user pages.</li>
+    <li><a href="http://rubygems.org/gems/stripe" target="_blank">stripe</a><br /><em>Stripe is the easiest way to accept payments online.</em><br />I still can't get over how easy it is to use stripe. At this point, I wouldn't consider another service to accept payments oneline.</li>
+    <li><a href="http://rubygems.org/gems/stripe_event" target="_blank">stripe_event</a><br /><em>Stripe webhook integration for Rails applications.</em><br />By adding this gem, I get to handle stripe webhooks with simple blocks right from the initializer file. It would have been much more time consuming to handle all of that on my own!</li>
+    <li><a href="http://rubygems.org/gems/twilio-ruby" target="_blank">twilio-ruby</a><br /><em>A simple library for communicating with the Twilio REST API, building TwiML, and generating Twilio Client Capability Tokens</em><br />This gem made Twilio integration easy.</li>
+    <li><a href="http://rubygems.org/gems/whenever" target="_blank">whenever</a><br /><em>Clean ruby syntax for writing and deploying cron jobs.</em><br />This gem allowed me to easily add/modify cronjobs right from the Rails app. I don't work with cron directly, any more. Now, I just edit the whenever's configuration file &amp; <a href="http://capistranorb.com/" target="_blank">capistrano</a> handles the rest during deploy.</li>
+  </ul>
+</p>
