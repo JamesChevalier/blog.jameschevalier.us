@@ -18,7 +18,7 @@ task :drafts do
   puts `find ./_posts -type f -exec grep -H 'published: false' {} \\;`
 end
 
-desc 'Create a new draft post'
+desc 'Create a new draft post; needs title=TITLE'
 task :post do
   title = ENV['title']
   slug = "#{Time.now.strftime('%Y-%m-%d')}-#{title.downcase.gsub(/[^[:alnum:]]+/, '-')}"
