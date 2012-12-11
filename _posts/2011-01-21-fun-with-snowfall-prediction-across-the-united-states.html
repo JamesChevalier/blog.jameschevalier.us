@@ -1,0 +1,26 @@
+---
+layout: post
+title: Fun With Snowfall Prediction Across The United States
+published: true
+tags:
+- api
+- blizzalert
+- noaa
+- php
+- sms
+- snowfall
+- weather
+---
+<p><a href="https://blizzalert.com/" target="_blank">Blizzalert</a> uses NOAA’s National Weather Service to get snowfall predictions for 400 ski areas across the United States, which is really really close to 100% coverage.<br>I took a few minutes today to play with some of the data that I’ve collected, and one of the calculations surprised me enough that I think I’m going to keep an eye on it for the rest of the winter. Here’s what I did (it’s going to get a little geeky in here, but it’s worth it)...</p>
+
+<p>
+  I wrote up some quick PHP to pull all of the current mountain data out of the database, then I sorted everything into an array so that each mountain had three entries (today, tomorrow, and the next day) which each contained the total projected snowfall for that day. This only required a little bit of work, because the snowfall amounts are separated into 6 hour chunks across a 24 hour period. Using this, I was able to do some fun stuff – I’ll talk about my two favorites:
+  <ol>
+    <li>I sorted and compared every mountain and every day to find which day at which mountain would get the most snow. Out of all 400 ski areas across the United States, it turns out that tomorrow Lost Trail Powder Mountain is projected to get the most snow at 18 inches!</li>
+    <li>I took every mountain’s snowfall prediction for tomorrow, January 22nd, and I added it all up. I learned that the United States is predicted to get 586 inches of snow tomorrow!</li>
+  </ol>
+</p>
+
+<p>I’ll be collecting this information for the rest of the winter, and I can’t wait to see what this season adds up to. Follow <a href="http://twitter.com/theblizzalert" target="_blank">@TheBlizzalert</a> on Twitter if you’re interested in hearing about it, because I’ll be letting everyone know which mountain will be getting the most snow &amp; how much snow tomorrow will bring.</p>
+
+<p>Better yet, go sign up for <a href="https://blizzalert.com/" target="_blank">Blizzalert</a> now because it’s easier to get a text message for the mountains that matter to you!</p>
