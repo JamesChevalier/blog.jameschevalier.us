@@ -1,0 +1,37 @@
+---
+layout: post
+title: How to make SublimeLinter work with Ruby & RVM
+published: true
+tags:
+- sublime-text-2
+- sublimelinter
+- ruby
+- rvm
+---
+
+<p>If you're using SublimeLinter with Sublime Text 2 on Rails projects using RVM, then you might have noticed some lines are displayed as being errors when they're actually not.</p>
+
+<p><img src="/assets/attachments/linter.png" alt="format.html lines are reported as containing errors" border="0" title="Example SublimeLinter False Positive"/></p>
+
+<p>This is because SublimeLinter is using the system ruby, instead of the ruby for your gemset. See, the Ruby linter that SublimeLinter uses is extremely simple. It just runs the code through <code>ruby -wc</code> and marks any output in the code. But that's the problem. Sublime Text 2 isn't using the <code>ruby</code> that your Rails app uses.</p>
+
+<p>
+  You can change the SublimeLinter settings to correct this issue by opening the <code>Sublime Text 2</code> menu, going into Preferences -> Package Settings -> SublimeLinter, and selecting <code>Settings - User</code>. Add this text to the file, save it, and restart Sublime Text 2:
+  <br />
+  {% gistnocache 4404298 SublimeLinter.sublime-settings %}
+</p>
+
+<p>
+  The old way we had to fix this problem was to go through the package files themselves:
+  <ul>
+    <li>Hold the option key down</li>
+    <li>Click the <code>Go</code> menu in Finder</li>
+    <li>Select <code>Library</code></li>
+    <li>Navigate into <code>Application Support/Sublime Text 2/Packages/SublimeLinter/sublimelinter/modules</code></li>
+    <li>Open the file <code>ruby.py</code> in Sublime Text 2</li>
+    <li>Change line 10 from <code>'executable': 'ruby',</code> to <code>'executable': '/Users/YOUR-USER-NAME/.rvm/bin/rvm-auto-ruby',</code></li>
+    <li>Restart Sublime Text 2</li>
+  </ul>
+</p>
+
+<p>The drawback to this workaround was that if/when SublimeLinter was updated, you would lose this edit. Good thing we don't need to worry about that, anymore!</p>
