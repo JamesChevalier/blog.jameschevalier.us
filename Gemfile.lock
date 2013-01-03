@@ -20,7 +20,7 @@ GEM
       syntax (>= 1.0.0)
     narray (0.6.0.4)
     posix-spawn (0.3.6)
-    pygments.rb (0.3.4)
+    pygments.rb (0.3.7)
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.1.0)
     syntax (1.0.0)
