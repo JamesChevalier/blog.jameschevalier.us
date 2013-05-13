@@ -8,14 +8,9 @@ task :deploy => :build do
   sh 'rsync -rtzh --progress --delete _site/ doozer:~/jekyll/blog.jameschevalier.us'
 end
 
-desc 'Run Jekyll with --server --auto'
+desc 'Run Jekyll with serve --watch --drafts --baseurl /'
 task :dev do
-  system('jekyll --server --auto')
-end
-
-desc 'List all draft posts'
-task :drafts do
-  puts `find ./_posts -type f -exec grep -H 'published: false' {} \\;`
+  system('jekyll serve --watch --drafts --baseurl /')
 end
 
 desc 'Create a new draft post; needs title=TITLE'
