@@ -1,5 +1,5 @@
-baseurl: http://blog.jameschevalier.us
 exclude: [Gemfile, Gemfile.lock, Rakefile, README.md]
-lsi: true
 permalink: /:title
 pygments: true
+name: James Chevalier | Blog
+markdown: redcarpet
