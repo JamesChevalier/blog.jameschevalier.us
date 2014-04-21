@@ -1,6 +1,6 @@
 desc 'Build site'
 task :build do
-  system('jekyll')
+  system('jekyll build')
 end
 
 desc 'Build and deploy'
@@ -8,9 +8,9 @@ task :deploy => :build do
   sh 'rsync -rtzh --progress --delete _site/ doozer:~/jekyll/blog.jameschevalier.us'
 end
 
-desc 'Run Jekyll with serve --watch --drafts --baseurl /'
+desc 'Run Jekyll with serve --watch --drafts'
 task :dev do
-  system('jekyll serve --watch --drafts --baseurl /')
+  system('jekyll serve --watch --drafts')
 end
 
 desc 'Create a new draft post; needs title=TITLE'
