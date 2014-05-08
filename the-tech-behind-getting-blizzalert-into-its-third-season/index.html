@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <title>James Chevalier | The tech behind getting Blizzalert into its third season</title>
+
+  <link rel="stylesheet" href="/blog.jameschevalier.us/assets/css/foundation.min.css">
+  <link rel="stylesheet" href="/blog.jameschevalier.us/assets/css/app.css">
+  <link rel="stylesheet" href="/blog.jameschevalier.us/assets/css/pygments.css">
+
+  <style type="text/css">
+    body,html{height:100%;}
+    body{background: url(http://jameschevalier.us/assets/bg.jpg) center center fixed no-repeat;-moz-background-size: cover;background-size: cover;}
+    div.panel{-moz-border-radius: 12px;-webkit-border-radius: 12px;border-radius: 12px;background: rgb(255,255,255);background: rgba(255,255,255,.8);}
+  </style>
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-6651820-22']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+
+  <div class="fixed">
+    <nav class="top-bar">
+      <ul>
+        <li class="name"><h1><a href="http://blog.jameschevalier.us">James Chevalier</a></h1></li>
+        <li class="toggle-topbar"><a href="#"></a></li>
+      </ul>
+      <section>
+        <ul class="left">
+          <li><a href="http://jameschevalier.us">Site</a></li>
+          <li><a href="http://blog.jameschevalier.us">Blog</a></li>
+          <li><a href="/blog.jameschevalier.us/tags">Tags</a></li>
+        </ul>
+
+        <ul class="right">
+          <li><a href="/blog.jameschevalier.us/feed"><img src="/blog.jameschevalier.us/assets/images/rss.png" alt="RSS" /></a></li>
+        </ul>
+      </section>
+    </nav>
+  </div>
+
+  <div class="row" style="margin-top:67px;">
+    <div class="twelve columns centered">
+      <div class="panel">
+        <span class="radius secondary label">09 Dec 2012</span>
+<h2>The tech behind getting Blizzalert into its third season</h2>
+<hr>
+
+<p>I've re-launched <a href="https://blizzalert.com" target="_blank">Blizzalert</a> for its third season!</p>
+
+<p>Blizzalert is a web service that provides snowfall omniscience via SMS. It monitors the weather at over <a href="https://blizzalert.com/mountains" target="_blank">400 mountains</a> across the United States, keeping track of snowfall. You select which mountains you want to watch, and Blizzalert sends text messages letting you know how much snow is coming, where, and when - all before it happens. I wrote a bit about the internals in my post <a href="http://blog.jameschevalier.us/never-miss-new-snow-with-blizzalert/">Never Miss New Snow With Blizzalert</a>.</p>
+
+<p>This re-launch is exciting, because I've completely re-written the site &amp; service. It's now a <a href="http://rubyonrails.org/" target="_blank">Ruby on Rails</a> app, and I'm using <a href="http://foundation.zurb.com" target="_blank">Foundation</a> to make the site responsive - it looks great on desktop computers, tablets, and phones.</p>
+
+<p>Blizzalert still uses the <a href="http://www.weather.gov/" target="_blank">National Oceanic and Atmospheric Administration</a>'s <a href="http://graphical.weather.gov/xml/" target="_blank">API</a> to monitor the weather at all of the areas, and it still uses <a href="http://www.twilio.com/" target="_blank">Twilio</a> to send text messages to customers. The rest of the site is completely overhauled, because of my migration from <a href="http://php.net/" target="_blank">PHP</a>/<a href="http://codeigniter.com" target="_blank">CodeIgniter</a> to Ruby on Rails.</p>
+
+<p>
+  I was able to use a number of <a href="http://rubygems.org/" target="_blank">Ruby gems</a> to make development easier. Here are some of the gems that were particularly helpful, and how they helped:
+  <ul>
+    <li><a href="http://rubygems.org/gems/airbrake" target="_blank">airbrake</a><br /><em>Send your application errors to our hosted service and reclaim your inbox.</em><br />I'm using the airbrake gem, and sending all of my error logs to my own instance of <a href="https://github.com/errbit/errbit" target="_blank">Errbit</a> that I've got running on <a href="http://www.heroku.com/" target="_blank">Heroku</a>. Errbit is indispensible for running Rails apps - use it or something like it to make error handling in production a snap.</li>
+    <li><a href="http://rubygems.org/gems/combined_time_select" target="_blank">combined_time_select</a><br /><em>Generates a time_select field like Google calendar.</em><br />This was pretty useful for creating a nice form for time input, which I need to give people a way to choose their earliest blizzalert time.</li>
+    <li><a href="http://rubygems.org/gems/newrelic_rpm" target="_blank">newrelic_rpm</a><br /><em>New Relic is a performance management system, developed by New Relic, Inc. New Relic provides you with deep information about the performance of your web application as it runs in production. The New Relic Ruby Agent is dual-purposed as a either a Gem or plugin.</em><br />If you're building/running a site, you need to be using New Relic. The visibility into your app/server that this service provides is amazing, and web developers are blind without it.</li>
+    <li><a href="http://rubygems.org/gems/phone" target="_blank">phone</a><br /><em>Phone number parsing, validation and formatting.</em><br />This was really useful to normalize all phone numbers coming into Blizzalert, and for displaying them nicely on user pages.</li>
+    <li><a href="http://rubygems.org/gems/stripe" target="_blank">stripe</a><br /><em>Stripe is the easiest way to accept payments online.</em><br />I still can't get over how easy it is to use stripe. At this point, I wouldn't consider another service to accept payments oneline.</li>
+    <li><a href="http://rubygems.org/gems/stripe_event" target="_blank">stripe_event</a><br /><em>Stripe webhook integration for Rails applications.</em><br />By adding this gem, I get to handle stripe webhooks with simple blocks right from the initializer file. It would have been much more time consuming to handle all of that on my own!</li>
+    <li><a href="http://rubygems.org/gems/twilio-ruby" target="_blank">twilio-ruby</a><br /><em>A simple library for communicating with the Twilio REST API, building TwiML, and generating Twilio Client Capability Tokens</em><br />This gem made Twilio integration easy.</li>
+    <li><a href="http://rubygems.org/gems/whenever" target="_blank">whenever</a><br /><em>Clean ruby syntax for writing and deploying cron jobs.</em><br />This gem allowed me to easily add/modify cronjobs right from the Rails app. I don't work with cron directly, any more. Now, I just edit the whenever's configuration file &amp; <a href="http://capistranorb.com/" target="_blank">capistrano</a> handles the rest during deploy.</li>
+  </ul>
+</p>
+
+<h3>Tags</h3>
+<p>
+  
+    <a href="/blog.jameschevalier.us/tag/api" title="View posts tagged with &quot;api&quot;"><span class="radius label">api</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/blizzalert" title="View posts tagged with &quot;blizzalert&quot;"><span class="radius label">blizzalert</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/noaa" title="View posts tagged with &quot;noaa&quot;"><span class="radius label">noaa</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/ruby" title="View posts tagged with &quot;ruby&quot;"><span class="radius label">ruby</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/ruby-on-rails" title="View posts tagged with &quot;ruby-on-rails&quot;"><span class="radius label">ruby-on-rails</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/ski" title="View posts tagged with &quot;ski&quot;"><span class="radius label">ski</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/ski-area" title="View posts tagged with &quot;ski-area&quot;"><span class="radius label">ski-area</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/sms" title="View posts tagged with &quot;sms&quot;"><span class="radius label">sms</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/snowboard" title="View posts tagged with &quot;snowboard&quot;"><span class="radius label">snowboard</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/snowfall" title="View posts tagged with &quot;snowfall&quot;"><span class="radius label">snowfall</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/stripe" title="View posts tagged with &quot;stripe&quot;"><span class="radius label">stripe</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/text-message" title="View posts tagged with &quot;text-message&quot;"><span class="radius label">text-message</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/twilio" title="View posts tagged with &quot;twilio&quot;"><span class="radius label">twilio</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/weather" title="View posts tagged with &quot;weather&quot;"><span class="radius label">weather</span></a>
+  
+</p>
+
+<h3>Related Posts</h3>
+<p>
+  
+    <span class="radius secondary label">17 Dec 2013</span> <a href="/blog.jameschevalier.us/donoku">Donoku</a><br />
+  
+    <span class="radius secondary label">28 Dec 2012</span> <a href="/blog.jameschevalier.us/how-to-make-sublimelinter-work-with-ruby-rvm">How to make SublimeLinter work with Ruby &amp; RVM</a><br />
+  
+    <span class="radius secondary label">03 Nov 2012</span> <a href="/blog.jameschevalier.us/little-corner-is-now-a-Heroku-ready-Rails-app">Little-Corner is now a Heroku-ready Rails app</a><br />
+  
+    <span class="radius secondary label">14 Oct 2012</span> <a href="/blog.jameschevalier.us/sip-as-a-replacement-for-pick-as-a-replacement-for-digital-color-meter-in-mac-os-x">Sip as a replacement for Pick as a replacement for Digital Color Meter in Mac OS X</a><br />
+  
+    <span class="radius secondary label">08 Oct 2012</span> <a href="/blog.jameschevalier.us/launch-soon-is-a-heroku-ready-viral-coming-soon-page">Launch Soon is a Heroku-ready viral Coming Soon page</a><br />
+  
+</p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- JS Files -->
+  <script src="/blog.jameschevalier.us/assets/js/modernizr.foundation.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/jquery.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/jquery.placeholder.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/jquery.foundation.topbar.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/foundation.min.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/app.js"></script>
+  <script>$(document).foundationTopBar();</script>
+
+</body>
+</html>

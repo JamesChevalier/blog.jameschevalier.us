@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+  xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+  >
+<channel>
+  <title type="text" xml:lang="en">James Chevalier</title>
+  <link>http://blog.jameschevalier.us</link>
+  <updated>2014-04-21T12:03:17-04:00</updated>
+  <id>http://blog.jameschevalier.us</id>
+  <author>
+    <name>James Chevalier</name>
+  </author>
+  <rights>Copyright (c) 2011-2012 James Chevalier</rights>
+  
+  <item>
+    <title>Donoku</title>
+    <link>http://blog.jameschevalier.us/donoku/</link>
+
+    <pubDate>2013-12-17T00:00:00-05:00</pubDate>
+    <updated>2013-12-17T00:00:00-05:00</updated>
+    <id>http://blog.jameschevalier.us/donoku/</id>
+    <content type="html">&lt;p&gt;I poked around at my first Sinatra project the other day: &lt;a href=&quot;https://github.com/JamesChevalier/donoku&quot;&gt;Donoku&lt;/a&gt;.
+It&#39;s a simple two-page site to take donations through &lt;a href=&quot;https://stripe.com/&quot;&gt;Stripe&lt;/a&gt; &lt;a href=&quot;https://stripe.com/blog/stripe-checkout&quot;&gt;Checkout&lt;/a&gt;. It&#39;s built to be deployed to &lt;a href=&quot;https://heroku.com&quot;&gt;Heroku&lt;/a&gt; &amp;amp; forces SSL, since Heroku gives its &quot;appname.herokuapp.com&quot; domains SSL access for free.&lt;/p&gt;
+
+&lt;p&gt;I&#39;ve already used Donoku twice on my own! Once to accept donations for &lt;a href=&quot;http://citystrides.com&quot;&gt;CityStrides&lt;/a&gt;, and once to accept donations for my &lt;a href=&quot;http://jimforward6.com&quot;&gt;campaign&lt;/a&gt; to be Holyoke&#39;s Ward 6 City Councilor.&lt;/p&gt;
+
+&lt;p&gt;
+  To force SSL, I used the &lt;a href=&quot;http://rubygems.org/gems/rack-ssl-enforcer&quot;&gt;rack-ssl-enforcer&lt;/a&gt; gem. It&#39;s really simple to use... Just add the gem to your Gemfile, then require it in your app.rb file &amp;amp; add a single line to require SSL everywhere outside of localhost &amp;amp; the test environment:&lt;br /&gt;
+  &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;  &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;rack/ssl-enforcer&amp;#39;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Rack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;SslEnforcer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;except_hosts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/127.0.0.1$/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:except_environments&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;test&amp;#39;&lt;/span&gt;
+  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+  You can see it in action at the top of &lt;a href=&quot;https://github.com/JamesChevalier/donoku/blob/master/app.rb&quot;&gt;Donoku&#39;s app.rb file&lt;/a&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;There&#39;s a little bit of a &lt;a href=&quot;http://mailchimp.com/&quot;&gt;MailChimp&lt;/a&gt; integration, as well. After the donation goes through, people are directed to the &#39;thank you&#39; page that includes a mailing list signup form. There&#39;s nothing crazy going on, but it works.&lt;/p&gt;
+
+&lt;p&gt;It&#39;s also one of my first attempts at using &lt;a href=&quot;http://rubygems.org/gems/minitest&quot;&gt;MiniTest&lt;/a&gt; instead of &lt;a href=&quot;http://rubygems.org/gems/rspec&quot;&gt;rspec&lt;/a&gt;. I like it just fine, but the familiarity that I have with rspec keeps me moving faster &amp; the abundence of rspec documentation online gets me un-stuck quicker. I&#39;m glad I tried it, but I&#39;ll be sticking with rspec (and might even switch Donoku over at some point).&lt;/p&gt;
+</content>
+  </item>
+  
+  <item>
+    <title>How to make SublimeLinter work with Ruby &amp; RVM</title>
+    <link>http://blog.jameschevalier.us/how-to-make-sublimelinter-work-with-ruby-rvm/</link>
+
+    <pubDate>2012-12-28T00:00:00-05:00</pubDate>
+    <updated>2012-12-28T00:00:00-05:00</updated>
+    <id>http://blog.jameschevalier.us/how-to-make-sublimelinter-work-with-ruby-rvm/</id>
+    <content type="html">&lt;p&gt;If you&#39;re using SublimeLinter with Sublime Text 2 on Rails projects using RVM, then you might have noticed some lines are displayed as being errors when they&#39;re actually not.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog.jameschevalier.us/assets/attachments/linter.png&quot; alt=&quot;format.html lines are reported as containing errors&quot; border=&quot;0&quot; title=&quot;Example SublimeLinter False Positive&quot;/&gt;&lt;/p&gt;
+
+&lt;p&gt;This is because SublimeLinter is using the system ruby, instead of the ruby for your gemset. See, the Ruby linter that SublimeLinter uses is extremely simple. It just runs the code through &lt;code&gt;ruby -wc&lt;/code&gt; and marks any output in the code. But that&#39;s the problem. Sublime Text 2 isn&#39;t using the &lt;code&gt;ruby&lt;/code&gt; that your Rails app uses.&lt;/p&gt;
+
+&lt;p&gt;
+  You can change the SublimeLinter settings to correct this issue by opening the &lt;code&gt;Sublime Text 2&lt;/code&gt; menu, going into Preferences -&gt; Package Settings -&gt; SublimeLinter, and selecting &lt;code&gt;Settings - User&lt;/code&gt;. Add this text to the file, save it, and restart Sublime Text 2:
+  &lt;br /&gt;
+  &lt;script src=&quot;https://gist.github.com/4404298.js?file=SublimeLinter.sublime-settings&quot;&gt; &lt;/script&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+  The old way we had to fix this problem was to go through the package files themselves:
+  &lt;ul&gt;
+    &lt;li&gt;Hold the option key down&lt;/li&gt;
+    &lt;li&gt;Click the &lt;code&gt;Go&lt;/code&gt; menu in Finder&lt;/li&gt;
+    &lt;li&gt;Select &lt;code&gt;Library&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Navigate into &lt;code&gt;Application Support/Sublime Text 2/Packages/SublimeLinter/sublimelinter/modules&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Open the file &lt;code&gt;ruby.py&lt;/code&gt; in Sublime Text 2&lt;/li&gt;
+    &lt;li&gt;Change line 10 from &lt;code&gt;&#39;executable&#39;: &#39;ruby&#39;,&lt;/code&gt; to &lt;code&gt;&#39;executable&#39;: &#39;/Users/YOUR-USER-NAME/.rvm/bin/rvm-auto-ruby&#39;,&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;Restart Sublime Text 2&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The drawback to this workaround was that if/when SublimeLinter was updated, you would lose this edit. Good thing we don&#39;t need to worry about that, anymore!&lt;/p&gt;
+</content>
+  </item>
+  
+  <item>
+    <title>The tech behind getting Blizzalert into its third season</title>
+    <link>http://blog.jameschevalier.us/the-tech-behind-getting-blizzalert-into-its-third-season/</link>
+
+    <pubDate>2012-12-09T00:00:00-05:00</pubDate>
+    <updated>2012-12-09T00:00:00-05:00</updated>
+    <id>http://blog.jameschevalier.us/the-tech-behind-getting-blizzalert-into-its-third-season/</id>
+    <content type="html">&lt;p&gt;I&#39;ve re-launched &lt;a href=&quot;https://blizzalert.com&quot; target=&quot;_blank&quot;&gt;Blizzalert&lt;/a&gt; for its third season!&lt;/p&gt;
+
+&lt;p&gt;Blizzalert is a web service that provides snowfall omniscience via SMS. It monitors the weather at over &lt;a href=&quot;https://blizzalert.com/mountains&quot; target=&quot;_blank&quot;&gt;400 mountains&lt;/a&gt; across the United States, keeping track of snowfall. You select which mountains you want to watch, and Blizzalert sends text messages letting you know how much snow is coming, where, and when - all before it happens. I wrote a bit about the internals in my post &lt;a href=&quot;http://blog.jameschevalier.us/never-miss-new-snow-with-blizzalert/&quot;&gt;Never Miss New Snow With Blizzalert&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This re-launch is exciting, because I&#39;ve completely re-written the site &amp;amp; service. It&#39;s now a &lt;a href=&quot;http://rubyonrails.org/&quot; target=&quot;_blank&quot;&gt;Ruby on Rails&lt;/a&gt; app, and I&#39;m using &lt;a href=&quot;http://foundation.zurb.com&quot; target=&quot;_blank&quot;&gt;Foundation&lt;/a&gt; to make the site responsive - it looks great on desktop computers, tablets, and phones.&lt;/p&gt;
+
+&lt;p&gt;Blizzalert still uses the &lt;a href=&quot;http://www.weather.gov/&quot; target=&quot;_blank&quot;&gt;National Oceanic and Atmospheric Administration&lt;/a&gt;&#39;s &lt;a href=&quot;http://graphical.weather.gov/xml/&quot; target=&quot;_blank&quot;&gt;API&lt;/a&gt; to monitor the weather at all of the areas, and it still uses &lt;a href=&quot;http://www.twilio.com/&quot; target=&quot;_blank&quot;&gt;Twilio&lt;/a&gt; to send text messages to customers. The rest of the site is completely overhauled, because of my migration from &lt;a href=&quot;http://php.net/&quot; target=&quot;_blank&quot;&gt;PHP&lt;/a&gt;/&lt;a href=&quot;http://codeigniter.com&quot; target=&quot;_blank&quot;&gt;CodeIgniter&lt;/a&gt; to Ruby on Rails.&lt;/p&gt;
+
+&lt;p&gt;
+  I was able to use a number of &lt;a href=&quot;http://rubygems.org/&quot; target=&quot;_blank&quot;&gt;Ruby gems&lt;/a&gt; to make development easier. Here are some of the gems that were particularly helpful, and how they helped:
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;http://rubygems.org/gems/airbrake&quot; target=&quot;_blank&quot;&gt;airbrake&lt;/a&gt;&lt;br /&gt;&lt;em&gt;Send your application errors to our hosted service and reclaim your inbox.&lt;/em&gt;&lt;br /&gt;I&#39;m using the airbrake gem, and sending all of my error logs to my own instance of &lt;a href=&quot;https://github.com/errbit/errbit&quot; target=&quot;_blank&quot;&gt;Errbit&lt;/a&gt; that I&#39;ve got running on &lt;a href=&quot;http://www.heroku.com/&quot; target=&quot;_blank&quot;&gt;Heroku&lt;/a&gt;. Errbit is indispensible for running Rails apps - use it or something like it to make error handling in production a snap.&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;http://rubygems.org/gems/combined_time_select&quot; target=&quot;_blank&quot;&gt;combined_time_select&lt;/a&gt;&lt;br /&gt;&lt;em&gt;Generates a time_select field like Google calendar.&lt;/em&gt;&lt;br /&gt;This was pretty useful for creating a nice form for time input, which I need to give people a way to choose their earliest blizzalert time.&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;http://rubygems.org/gems/newrelic_rpm&quot; target=&quot;_blank&quot;&gt;newrelic_rpm&lt;/a&gt;&lt;br /&gt;&lt;em&gt;New Relic is a performance management system, developed by New Relic, Inc. New Relic provides you with deep information about the performance of your web application as it runs in production. The New Relic Ruby Agent is dual-purposed as a either a Gem or plugin.&lt;/em&gt;&lt;br /&gt;If you&#39;re building/running a site, you need to be using New Relic. The visibility into your app/server that this service provides is amazing, and web developers are blind without it.&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;http://rubygems.org/gems/phone&quot; target=&quot;_blank&quot;&gt;phone&lt;/a&gt;&lt;br /&gt;&lt;em&gt;Phone number parsing, validation and formatting.&lt;/em&gt;&lt;br /&gt;This was really useful to normalize all phone numbers coming into Blizzalert, and for displaying them nicely on user pages.&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;http://rubygems.org/gems/stripe&quot; target=&quot;_blank&quot;&gt;stripe&lt;/a&gt;&lt;br /&gt;&lt;em&gt;Stripe is the easiest way to accept payments online.&lt;/em&gt;&lt;br /&gt;I still can&#39;t get over how easy it is to use stripe. At this point, I wouldn&#39;t consider another service to accept payments oneline.&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;http://rubygems.org/gems/stripe_event&quot; target=&quot;_blank&quot;&gt;stripe_event&lt;/a&gt;&lt;br /&gt;&lt;em&gt;Stripe webhook integration for Rails applications.&lt;/em&gt;&lt;br /&gt;By adding this gem, I get to handle stripe webhooks with simple blocks right from the initializer file. It would have been much more time consuming to handle all of that on my own!&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;http://rubygems.org/gems/twilio-ruby&quot; target=&quot;_blank&quot;&gt;twilio-ruby&lt;/a&gt;&lt;br /&gt;&lt;em&gt;A simple library for communicating with the Twilio REST API, building TwiML, and generating Twilio Client Capability Tokens&lt;/em&gt;&lt;br /&gt;This gem made Twilio integration easy.&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;http://rubygems.org/gems/whenever&quot; target=&quot;_blank&quot;&gt;whenever&lt;/a&gt;&lt;br /&gt;&lt;em&gt;Clean ruby syntax for writing and deploying cron jobs.&lt;/em&gt;&lt;br /&gt;This gem allowed me to easily add/modify cronjobs right from the Rails app. I don&#39;t work with cron directly, any more. Now, I just edit the whenever&#39;s configuration file &amp;amp; &lt;a href=&quot;http://capistranorb.com/&quot; target=&quot;_blank&quot;&gt;capistrano&lt;/a&gt; handles the rest during deploy.&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/p&gt;</content>
+  </item>
+  
+  <item>
+    <title>Little-Corner is now a Heroku-ready Rails app</title>
+    <link>http://blog.jameschevalier.us/little-corner-is-now-a-Heroku-ready-Rails-app/</link>
+
+    <pubDate>2012-11-03T00:00:00-04:00</pubDate>
+    <updated>2012-11-03T00:00:00-04:00</updated>
+    <id>http://blog.jameschevalier.us/little-corner-is-now-a-Heroku-ready-Rails-app/</id>
+    <content type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/JamesChevalier/Little-Corner&quot; target=&quot;_blank&quot;&gt;Little-Corner&lt;/a&gt; is an open source project of mine that you can use to easily make yourself a website. It automaticlaly pulls your entire web presence into one place, like &lt;a href=&quot;http://about.me&quot; target=&quot;_blank&quot;&gt;About.me&lt;/a&gt; or &lt;a href=&quot;http://flavors.me&quot; target=&quot;_blank&quot;&gt;Flavors.me&lt;/a&gt;. Currently it supports connecting to &lt;a href=&quot;http://delicious.com&quot; target=&quot;_blank&quot;&gt;Delicious&lt;/a&gt;, &lt;a href=&quot;http://foursquare.com&quot; target=&quot;_blank&quot;&gt;Foursquare&lt;/a&gt;, &lt;a href=&quot;http://github.com&quot; target=&quot;_blank&quot;&gt;GitHub&lt;/a&gt;, &lt;a href=&quot;http://www.google.com/analytics/&quot; target=&quot;_blank&quot;&gt;Google Analytics&lt;/a&gt;, &lt;a href=&quot;http://gravatar.com&quot; target=&quot;_blank&quot;&gt;Gravatar&lt;/a&gt;, &lt;a href=&quot;http://instagram.com&quot; target=&quot;_blank&quot;&gt;Instagram&lt;/a&gt;, &lt;a href=&quot;http://last.fm&quot; target=&quot;_blank&quot;&gt;Last.FM&lt;/a&gt;, &lt;a href=&quot;http://soundcloud.com&quot; target=&quot;_blank&quot;&gt;Soundcloud&lt;/a&gt;, &lt;a href=&quot;http://twitter.com&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;, and your blog (via RSS).&lt;/p&gt;
+
+&lt;p&gt;I&#39;ve updated Little-Corner to use &lt;a href=&quot;http://rubyonrails.org/&quot; target=&quot;_blank&quot;&gt;Ruby on Rails&lt;/a&gt;. It used to be written in PHP and used &lt;a href=&quot;http://codeigniter.com&quot; target=&quot;_blank&quot;&gt;CodeIgniter&lt;/a&gt;, which I &lt;a href=&quot;http://blog.jameschevalier.us/little-corner-my-open-source-project-to-make-you-a-better-website/&quot;&gt;previously wrote about&lt;/a&gt;. The move to Ruby on Rails will make it easier for me to maintain, and easier for you to get it online.&lt;/p&gt;
+
+&lt;p&gt;It also now uses Zurb&#39;s &lt;a href=&quot;http://foundation.zurb.com&quot; target=&quot;_blank&quot;&gt;Foundation&lt;/a&gt; as its design framework. By using Foundation, your website is automatically a responsive site that looks great on computers, tablets, and phones. I&#39;ve slightly modified it to use a single large image as the site&#39;s background, and to add transparency to panels. The transparency allows your background image to be seen through the content being displayed, and maintains the comfortable black-text-on-white-background view.&lt;/p&gt;
+
+&lt;p&gt;Getting the app online is easy, too, because it&#39;s easily deployable to &lt;a href=&quot;http://heroku.com&quot;&gt;Heroku&lt;/a&gt;. You could also modify it to deploy to your own server (like I do, to run it on my &lt;a href=&quot;http://www.linode.com/?r=4b85e2ea3c6b78b139cc41e341ae37fdac438c54&quot; target=&quot;_blank&quot;&gt;Linode&lt;/a&gt; instance).&lt;/p&gt;
+</content>
+  </item>
+  
+  <item>
+    <title>Sip as a replacement for Pick as a replacement for Digital Color Meter in Mac OS X</title>
+    <link>http://blog.jameschevalier.us/sip-as-a-replacement-for-pick-as-a-replacement-for-digital-color-meter-in-mac-os-x/</link>
+
+    <pubDate>2012-10-14T00:00:00-04:00</pubDate>
+    <updated>2012-10-14T00:00:00-04:00</updated>
+    <id>http://blog.jameschevalier.us/sip-as-a-replacement-for-pick-as-a-replacement-for-digital-color-meter-in-mac-os-x/</id>
+    <content type="html">&lt;p&gt;&lt;a href=&quot;/thoughts/pick-as-a-replacement-for-digital-color-meter-in-mac-os-x-lion/&quot;&gt;This&lt;/a&gt; is getting to be a bit ridiculous, so I hope &lt;a href=&quot;http://click.linksynergy.com/fs-bin/click?id=vwHUN9G4nyY&amp;amp;subid=&amp;amp;offerid=146261.1&amp;amp;type=10&amp;amp;tmpid=3909&amp;amp;RD_PARM1=https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fsip%2Fid507257563%3Fmt%3D12&quot; target=&quot;_blank&quot;&gt;Sip&lt;/a&gt; is here to stay.&lt;/p&gt;
+
+&lt;p&gt;Since Digital Color Meter no longer provides Hex values for colors, we need a specialized app for this. We need something that will allow us to click on any color on the screen - regardless of which app it&#39;s in - in order to get its Hex color code.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://click.linksynergy.com/fs-bin/click?id=vwHUN9G4nyY&amp;amp;subid=&amp;amp;offerid=146261.1&amp;amp;type=10&amp;amp;tmpid=3909&amp;amp;RD_PARM1=https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fsip%2Fid507257563%3Fmt%3D12&quot; target=&quot;_blank&quot;&gt;Sip&lt;/a&gt; allows you to type ⌃⌥P to turn your cursor into a color picker. When you click on a color, a nice little plinky sound plays &amp;amp; the color code is copied to your clipboard.&lt;/p&gt;
+
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;img title=&quot;Sip&quot; src=&quot;/blog.jameschevalier.us/assets/attachments/sip.png&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;&lt;small&gt;Sip Color Picker&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt;You have a huge selection of color formats to choose from - you aren&#39;t limited to just CSS Hex. A few of the color formats look like they would be useful for iOS developers. They keyboard shortcuts are customizable, and allow you to switch through previously sipped colors.&lt;/p&gt;
+
+&lt;p&gt;The code that&#39;s copied to your clipboard is customizable, as well (all caps, whether the # prefix is included, etc). This is useful, as some code editors will highlight the # when a color code is double-clicked and some only select the code itself.&lt;/p&gt;
+
+&lt;p&gt;You can also choose how much of a history to keep saved in the menu (this defaults to 10). This makes it very easy to spend some time collecting colors, then spend some time using those colors - rather than forcing yourself to go back &amp;amp; forth one at a time.&lt;/p&gt;
+
+&lt;p&gt;The magnifier size is customizable from a choice of small, medium, and large (more like small, large, and Woah). The amount of magnification that occurs is dependent on the size of the magnifier, so you&#39;re going to get a more detailed color picker by using the Woah sized magnifier.&lt;/p&gt;
+
+&lt;p&gt;So, for now at least, &lt;a href=&quot;http://click.linksynergy.com/fs-bin/click?id=vwHUN9G4nyY&amp;amp;subid=&amp;amp;offerid=146261.1&amp;amp;type=10&amp;amp;tmpid=3909&amp;amp;RD_PARM1=https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fsip%2Fid507257563%3Fmt%3D12&quot; target=&quot;_blank&quot;&gt;Sip&lt;/a&gt; is what I use to grab the Hex code throughout Mac OS X.&lt;/p&gt;
+</content>
+  </item>
+  
+  <item>
+    <title>Launch Soon is a Heroku-ready viral Coming Soon page</title>
+    <link>http://blog.jameschevalier.us/launch-soon-is-a-heroku-ready-viral-coming-soon-page/</link>
+
+    <pubDate>2012-10-08T00:00:00-04:00</pubDate>
+    <updated>2012-10-08T00:00:00-04:00</updated>
+    <id>http://blog.jameschevalier.us/launch-soon-is-a-heroku-ready-viral-coming-soon-page/</id>
+    <content type="html">&lt;p&gt;Launch Soon is a project of mine that allows you to quickly and easily set up a Coming Soon page. It collects email addresses in a &lt;a href=&quot;http://mailchimp.com&quot; target=&quot;_BLANK&quot;&gt;Mailchimp&lt;/a&gt; list, and provides users with a custom link that they can share with others. When someone signs up from a custom link, the referral is tallied in the Mailchimp list. This gives the site owners the ability to see who is referring the most traffic, and contact them separately through Mailchimp Segments.&lt;/p&gt;
+
+&lt;p&gt;I originally created the open source &lt;a href=&quot;http://launchrock.com/&quot; target=&quot;_BLANK&quot;&gt;LaunchRock&lt;/a&gt; clone in PHP, and wrote about it &lt;a href=&quot;/web-project/my-open-source-viral-launching-soon-project/&quot;&gt;here&lt;/a&gt;. I decided to rewrite the site to use Ruby on Rails so that I could make it even easier for people to get running. This can now easily be run for free on Heroku, hooks directly into Mailchimp, and doesn&#39;t use a database at all.&lt;/p&gt;
+
+&lt;p&gt;I decided to use Mailchimp as the only data store so that all the data needed to contact interested users is in one place. This makes the Mailchimp list much more powerful, and removes the need for an admin interface to Launch Soon. With all of this in place, your Coming Soon page is completely disposable - as it should be.&lt;/p&gt;
+
+&lt;p&gt;You can see an example of it running at &lt;a href=&quot;http://launch-soon-example.herokuapp.com&quot;&gt;http://launch-soon-example.herokuapp.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The actual project and the instructions for getting it running is up on GitHub &lt;a href=&quot;https://github.com/JamesChevalier/Launch-Soon&quot; target=&quot;_BLANK&quot;&gt;here&lt;/a&gt;. Contributions are welcome, so feel free to submit pull requests! Talk to me &lt;a href=&quot;http://twitter.com/JamesChevalier&quot; target=&quot;_BLANK&quot;&gt;on Twitter&lt;/a&gt; or contact me through &lt;a href=&quot;http://jameschevalier.us/contact&quot; target=&quot;_BLANK&quot;&gt;my site&lt;/a&gt; if you have any questions.&lt;/p&gt;
+</content>
+  </item>
+  
+  <item>
+    <title>How to Use Console to view the log files for your Rails App</title>
+    <link>http://blog.jameschevalier.us/how-to-use-console-to-view-the-log-files-for-your-rails-app/</link>
+
+    <pubDate>2012-07-16T00:00:00-04:00</pubDate>
+    <updated>2012-07-16T00:00:00-04:00</updated>
+    <id>http://blog.jameschevalier.us/how-to-use-console-to-view-the-log-files-for-your-rails-app/</id>
+    <content type="html">&lt;p&gt;By viewing the log for your Rails app from within Console, you can quickly clear your view of the log between tests so that you don&#39;t have to sift through irrelevant data. Just use the &lt;strong&gt;Clear Display&lt;/strong&gt; button before accessing the site. It&#39;s non-destructive, so navigating away from the log file &amp;amp; then viewing it again will display the entire log file. You can also delete the log file right from Console to keep it from getting out of hand.&lt;/p&gt;
+
+&lt;p&gt;If you&#39;re using Pow, run these commands in the Terminal:
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/Library/Logs/Pow/apps
+ln -s /path/to/your/rails/app/log name-of-your-rails-app
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Now you can view the logs in Console under the FILES section in ~/Library/Logs/Pow/apps/name-of-your-rails-app/development.log&lt;/p&gt;
+
+&lt;p&gt;If you&#39;re not using Pow (&lt;a title=&quot;You&#39;re not using Pow?!&quot; href=&quot;/thoughts/pow-makes-multi-site-rails-apps-easy/&quot;&gt;you&#39;re not using Pow?!&lt;/a&gt;), run these commands in the Terminal:
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/Library/Logs
+mkdir Rails
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;Rails
+ln -s /path/to/your/rails/app/logs name-of-your-rails-app
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Now you can view the logs in Console under the FILES section in ~/Library/Logs/Rails/name-of-your-rails-app/development.log&lt;/p&gt;
+
+&lt;h5&gt;Update:&lt;/h5&gt;
+&lt;p&gt;Mountain Lion removed the feature of Console being able to display symlinked folders. I&#39;ve looked around for another way to add folders to Console, but I haven&#39;t found anything really useful yet.&lt;/p&gt;
+
+&lt;p&gt;The only fix I have at the moment is to ⌘-o within Console, navigate into the symlink in Pow&#39;s log folder, and open the development.log file. This will keep the file open in Console, at the bottom of the log list. It&#39;s a serious pain for anyone with multiple Rails apps, though, because then they&#39;re all listed in Console as &#39;development.log&#39;.&lt;/p&gt;
+</content>
+  </item>
+  
+  <item>
+    <title>How do you keep at it like that?</title>
+    <link>http://blog.jameschevalier.us/how-do-you-keep-at-it-like-that/</link>
+
+    <pubDate>2012-06-20T00:00:00-04:00</pubDate>
+    <updated>2012-06-20T00:00:00-04:00</updated>
+    <id>http://blog.jameschevalier.us/how-do-you-keep-at-it-like-that/</id>
+    <content type="html">&lt;p&gt;Noel wrote a post, &lt;a href=&quot;http://noelstjean.tumblr.com/post/25441553620&quot; title=&quot;&#39;Is it really necessary?&#39; and other (similar) questions&quot; target=&quot;_blank&quot;&gt;&quot;Is it really necessary?&quot; and other (similar) questions&lt;/a&gt;, about parents of dance students always asking if the next class or event is required. The perspective struck me - that &quot;Do I Have To?&quot; response to an obligation - and it got me thinking about how people handle large goals...&lt;/p&gt;
+
+&lt;p&gt;For example, I often hear how others can&#39;t believe I keep running as much as I do. I&#39;m training for a half marathon, so I&#39;m running pretty frequently and setting personal bests on my mileage. Even so - I don&#39;t get the feeling that they think I run an &lt;em&gt;inhuman&lt;/em&gt; distance, or that my schedule is completely &lt;em&gt;incomprehensible&lt;/em&gt; to them. The feeling that I get, when I hear them congratulate me on my hard work in that manner, is that they think they wouldn&#39;t be able to keep themselves from slacking off while working towards the goal.&lt;/p&gt;
+
+&lt;p&gt;That they wouldn&#39;t be able to keep from asking themselves &#39;Do I have to?&#39;.&lt;/p&gt;
+
+&lt;p&gt;That they wouldn&#39;t be able to tell themselves &#39;Yes.&#39; each time they asked themselves &#39;Do I have to?&#39;.&lt;/p&gt;
+
+&lt;p&gt;I was thinking earlier today, after my run, about how we spend the first two years of our lives figuring out &lt;a href=&quot;http://en.wikipedia.org/wiki/Object_permanence&quot; title=&quot;object permanence&quot; target=&quot;_blank&quot;&gt;object permanence&lt;/a&gt; &amp;amp; the rest of our lives trying to come to grips with &lt;a href=&quot;http://en.wikipedia.org/wiki/Impermanence&quot; title=&quot;impermanence&quot; target=&quot;_blank&quot;&gt;impermanence&lt;/a&gt;. Now, after reading Noel&#39;s post, I&#39;m thinking about how so much that we observe/learn as children affects our behavior later in life. Maybe many of us figured out how to question the necessity of each of the individual steps that go into attaining a larger goal to such a debilitating extent that we prohibit ourselves from attaining our goals. And from the perspective of Noel&#39;s post, I wonder how many of us figured that out by watching our parents talk to our teachers.&lt;/p&gt;
+
+&lt;p&gt;You have a goal. You have the steps required to reach that goal. All of the steps are required.&lt;/p&gt;
+</content>
+  </item>
+  
+  <item>
+    <title>How to add auto-completion to git</title>
+    <link>http://blog.jameschevalier.us/how-to-add-auto-completion-to-git/</link>
+
+    <pubDate>2012-06-15T00:00:00-04:00</pubDate>
+    <updated>2012-06-15T00:00:00-04:00</updated>
+    <id>http://blog.jameschevalier.us/how-to-add-auto-completion-to-git/</id>
+    <content type="html">&lt;p&gt;Sometimes git projects can have a lot of different branches, and you might need to frequently check out different branches. It can be tedious to write out the entire branch name every time (especially if you tend to have longer branch names). Luckily, there&#39;s a fix for that: git auto-complete.&lt;/p&gt;
+
+&lt;p&gt;You&#39;ll need to make the file &lt;strong&gt;git-completion.bash&lt;/strong&gt; permanently available to your .bash_profile file. The easiest way to do that is to copy the file into your home directory as .git-completion. Here are the three easiest methods to copy that file into place - choose the one method that you&#39;re most comfortable with...&lt;/p&gt;
+
+&lt;h4&gt;A) With cURL:&lt;/h4&gt;
+&lt;p&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;curl https://raw.github.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+
+&lt;h4&gt;B) With wget:&lt;/h4&gt;
+&lt;p&gt;Install wget, if you don&#39;t already have it:
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;brew install wget
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+
+&lt;p&gt;Use this command to create the &lt;strong&gt;.git-completion&lt;/strong&gt; file:
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;wget https://raw.github.com/git/git/master/contrib/completion/git-completion.bash -O ~/.git-completion
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+
+&lt;h4&gt;C) Manually:&lt;/h4&gt;
+&lt;p&gt;Go to the URL &lt;a href=&quot;https://raw.github.com/git/git/master/contrib/completion/git-completion.bash&quot; title=&quot;https://raw.github.com/git/git/master/contrib/completion/git-completion.bash&quot; target=&quot;_blank&quot;&gt;https://raw.github.com/git/git/master/contrib/completion/git-completion.bash&lt;/a&gt;, and save the file as .git-completion in your home directory.&lt;/p&gt;
+
+&lt;p&gt;With that file in place, you&#39;ll need to edit your ~/.bash_profile file with your editor of choice.  Just add this line to the end of the file:
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; ~/.git-completion
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+
+&lt;p&gt;After saving the .bash_profile changes, you will need to quit Terminal then re-open it for the changes to take place. Alternatively, you can run this command to force the changes without restarting Terminal:
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; ~/.profile
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+
+&lt;p&gt;Now branch names are auto-completed in Terminal! If you have a branch named &quot;some-other-new-feature&quot; (and let&#39;s assume for this example that you have no other branches that start with the letter s) then you can check out the branch with &lt;code&gt;git chec&amp;lt;tab&amp;gt; s&amp;lt;tab&amp;gt;&lt;/code&gt;, which will auto-complete both of the &lt;code&gt;&amp;lt;tab&amp;gt;&lt;/code&gt; keystrokes out to &lt;code&gt;git checkout some-other-new-feature&lt;/code&gt;.&lt;/p&gt;
+</content>
+  </item>
+  
+  <item>
+    <title>Pow makes multi-site Rails apps EASY</title>
+    <link>http://blog.jameschevalier.us/pow-makes-multi-site-rails-apps-easy/</link>
+
+    <pubDate>2012-06-13T00:00:00-04:00</pubDate>
+    <updated>2012-06-13T00:00:00-04:00</updated>
+    <id>http://blog.jameschevalier.us/pow-makes-multi-site-rails-apps-easy/</id>
+    <content type="html">&lt;p&gt;I wrote my first blog post at &lt;a href=&quot;http://commonmediainc.com&quot; TARGET=&quot;_blank&quot;&gt;work&lt;/a&gt; the other day. It&#39;s about how to serve multi-site Rails apps (where one Rails app serves multiple different sites that are available at different domains), and how to use &lt;a href=&quot;http://pow.cx&quot; TARGET=&quot;_blank&quot;&gt;Pow&lt;/a&gt; to make it easy.&lt;/p&gt;
+
+&lt;p&gt;The whole thing really stemmed from my own question on &lt;a href=&quot;http://stackoverflow.com&quot; TARGET=&quot;_blank&quot;&gt;Stack Overflow&lt;/a&gt;, where I asked if it was possible to use Pow&#39;s .powrc file to pass session variables to Rails based on the URL being accessed. It turns out that I conceptualized the action (determining the URL being accessed) in the wrong place - it&#39;s better to do that on the Rails side, not on Pow&#39;s side. Anyway, you can read all about that &lt;a href=&quot;http://stackoverflow.com/questions/10954945/is-it-possible-to-use-the-powrc-file-to-pass-session-variables-to-rails-based-o&quot; TARGET=&quot;_blank&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The end result is a description of how to use one Rails app to host multiple sites, how to switch between the different sites, and then how to automate the whole thing so you don&#39;t have to manually change the sites that Rails serves. If you&#39;re into that sort of thing, you can read it &lt;a href=&quot;http://commonmediainc.com/blog/how-serve-multi-site-rails-apps-and-use-pow-make-it-easy&quot; TARGET=&quot;_blank&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </item>
+  
+  <item>
+    <title>I put together the site for JeffreyB Photography</title>
+    <link>http://blog.jameschevalier.us/i-put-together-the-site-for-jeffreyb-photography/</link>
+
+    <pubDate>2012-03-30T00:00:00-04:00</pubDate>
+    <updated>2012-03-30T00:00:00-04:00</updated>
+    <id>http://blog.jameschevalier.us/i-put-together-the-site-for-jeffreyb-photography/</id>
+    <content type="html">&lt;p&gt;I spent my free time from Monday March 26th to Friday March 30th putting together the website for one of the best photographers in Holyoke - Jeffrey Byrnes. It&#39;s live now at &lt;a href=&quot;http://jeffreybphotography.com&quot; title=&quot;JeffreyB Photography&quot; target=&quot;_blank&quot;&gt;http://jeffreybphotography.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Jeff had been struggling with his site for a while, because of how difficult it can be to get the code right. It&#39;s especially important for his site because of how much it relies on the presentation - his work &lt;strong&gt;is&lt;/strong&gt; the imagery, after all. So, I created the site with two major areas of focus:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;The site should be easy to use.&lt;/strong&gt; He&#39;s a photographer - he should be making &amp;amp; displaying photographs, not fiddling with lines of code to get webpages to display correctly.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The site should highlight his photographs as strongly as possible.&lt;/strong&gt; Jeff&#39;s work is visually impacting, so I really felt that the site needed to get out of the way of his images as much as possible.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I used &lt;a href=&quot;http://buildinternet.com/&quot; title=&quot;BuildInternet&quot; target=&quot;_blank&quot;&gt;BuildInternet&#39;s&lt;/a&gt; &lt;a href=&quot;http://www.buildinternet.com/project/supersized/&quot; title=&quot;BuildInternet&#39;s Supersized jQuery plugin&quot; target=&quot;_blank&quot;&gt;Supersized jQuery plugin&lt;/a&gt; as the basis for the overall site design as well as the slideshow functionality. I had originally chose to work with the Supersized jQuery plugin because of its full-screen slideshow. It sets the image to the full size of the browser, and includes a small set of controls at the bottom of the screen ... nothing more. This was perfect for one of my focuses - the site getting out of the way of the images. After working with the plugin a bit more, I realized that it had the capability of hooking into Flickr. That&#39;s when I realized it was also a perfect fit for my other focus - Jeff already used Flickr extensively, and in a very organized fashion.&lt;/p&gt;
+
+&lt;p&gt;I did have to make some modifications to the plugin, though. Originally, there were some UI elements that sat on top of the images - these provided forward/backward navigation through the image slideshows. I also didn&#39;t want to complicate the controls by including a set of navigation for thumbnails (basically, a second area of navigation on top of the existing full-size image navigation - it just made things a little more apparent than I wanted them to be for this site). So, after modifying the control set at the bottom of the page, I was ready to figure out how to display the pages that required a bit more content...&lt;/p&gt;
+
+&lt;p&gt;The About, Contact, and Projects pages are all single-image pages with their own content. I didn&#39;t want to give up the ascetic of the site for these three pages, so I needed to figure out a way to overlay the content onto the page. I was lucky, because I had already figured out a way to accomplish this a few months ago - I even had two ways to do this.
+
+&lt;p&gt;One by using a set of layered divs:&lt;/p&gt;
+&lt;script src=&quot;https://gist.github.com/1506483.js?file=transparency.html&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;One by using CSS3 rgba backgrounds:&lt;/p&gt;
+&lt;script src=&quot;https://gist.github.com/1506869.js?file=transparency.html&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;I plugged in my code &amp;amp; had some awesome opaque boxes for the content to sit in - perfect - you can read the content just fine, and the background image still comes through.&lt;/p&gt;
+
+&lt;p&gt;Maintaining the site can&#39;t get much easier for Jeff, either - which was my other area of focus. Now he doesn&#39;t have to fight with code, and his overall workflow isn&#39;t changed either. All he has to do is maintain his Flickr Sets, which he does anyway. The site automatically connects into his Flickr account through the Flickr API to display the correct set of images for each page - it goes so far as to allow him to modify his Flickr Sets &amp;amp; have his changes be visible on his site &lt;strong&gt;immediately&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;While working with that Flickr connection, I found a bug in how the plugin attempted to get the owner of Flickr photos. This was causing all of the photo links to go to error pages on Flickr, instead of the photo&#39;s Flickr page. Supersized is open source software that&#39;s hosted on &lt;a href=&quot;https://github.com&quot; title=&quot;GitHub&quot; target=&quot;_blank&quot;&gt;GitHub&lt;/a&gt;, so I was able to submit &lt;a href=&quot;https://github.com/buildinternet/supersized/pull/66&quot; title=&quot;My Supersized Flickr Fix&quot; target=&quot;_blank&quot;&gt;the fix&lt;/a&gt; that I came up with.&lt;/p&gt;
+
+&lt;p&gt;This was an exciting project for me because of its pace, because of how easy it is to work with Jeff, and because of how much impact my work has (and will have) on everyone who comes to Jeff&#39;s site to appreciate his work.&lt;/p&gt;
+
+&lt;p&gt;JeffreyB Photography is located in the heart of downtown Holyoke. If you need photos, you need Jeff - you can get his contact information right from his &lt;a href=&quot;http://jeffreybphotography.com/contact&quot; title=&quot;Contact JeffreyB Photography&quot; target=&quot;_blank&quot;&gt;amazing website&lt;/a&gt;. ;-)&lt;/p&gt;
+</content>
+  </item>
+  
+  <item>
+    <title>Make a GitHub Project Page that's an exact mirror of your Master branch</title>
+    <link>http://blog.jameschevalier.us/make-a-github-project-page-thats-an-exact-mirror-of-your-master-branch/</link>
+
+    <pubDate>2012-01-31T00:00:00-05:00</pubDate>
+    <updated>2012-01-31T00:00:00-05:00</updated>
+    <id>http://blog.jameschevalier.us/make-a-github-project-page-thats-an-exact-mirror-of-your-master-branch/</id>
+    <content type="html">&lt;p&gt;GitHub has a &lt;a href=&quot;http://pages.github.com/&quot; target=&quot;_blank&quot;&gt;Project Pages&lt;/a&gt; feature that creates a webpage based on the content of the gh-pages branch of a repository. I asked, and subsequently answered, the question of how to get the Project Page to be an exact mirror of the Master branch over on &lt;a href=&quot;http://stackoverflow.com/questions/9069165/can-i-make-the-gh-pages-branch-of-my-git-repository-a-mirror-of-the-master-branc&quot; target=&quot;_blank&quot;&gt;Stack Overflow&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;One way I &lt;a href=&quot;http://stackoverflow.com/questions/1705224/github-how-to-include-files-from-master-in-new-git-branch-gh-pages&quot; target=&quot;_blank&quot;&gt;found&lt;/a&gt; is to run the following command, which sets a configuration setting that causes every subsequent instance of &lt;code&gt;git push&lt;/code&gt; to push the Master branch of the repository into the gh-pages branch:
+&lt;code&gt;git config --add remote.origin.push +refs/heads/master:refs/heads/gh-pages&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The trouble with this solution is that I&#39;m using the &lt;a href=&quot;http://mac.github.com/&quot; target=&quot;_blank&quot;&gt;GitHub Mac App&lt;/a&gt;, which doesn&#39;t use a strict &lt;code&gt;git push&lt;/code&gt;. According to &lt;a href=&quot;http://mac.github.com/help.html&quot; target=&quot;_blank&quot;&gt;their Help page&lt;/a&gt;, it does a &lt;code&gt;git pull --rebase&lt;/code&gt;. Additionally, even when I select Push from the Repository menu, my git config line isn&#39;t adhered to. I&#39;m not sure what&#39;s up with that...&lt;/p&gt;
+
+&lt;p&gt;I ran through a bunch of my own tests, trying to figure out how this branch mirroring can be done in a GitHub-For-Mac-App-Friendly way. It doesn&#39;t seem like you need to go through the exact process they&#39;ve &lt;a href=&quot;http://pages.github.com/&quot; target=&quot;_blank&quot;&gt;described&lt;/a&gt; to create the gh-pages branch. Over there, they provide the following process along with the disclaimer &quot;Caution: make your working directory clean before you do this (either stash or commit), otherwise this will lose any changes you&#39;ve made to your project since the last commit.&quot;:
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /path/to/repo-name
+git symbolic-ref HEAD refs/heads/gh-pages
+rm .git/index
+git clean -fdx
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;My GitHub Page&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;gt&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; index.html
+git add .
+git commit -a -m &lt;span class=&quot;s2&quot;&gt;&amp;quot;First pages commit&amp;quot;&lt;/span&gt;
+git push origin gh-pages
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Instead, you can simply create a new branch named gh-pages from within the GitHub Mac App. They probably don&#39;t instruct people to do this because what I&#39;m accomplishing here isn&#39;t a typical scenario.&lt;/p&gt;
+
+&lt;p&gt;You can take these steps to create the &#39;gh-pages&#39; branch from within the GitHub Mac App:&lt;/p&gt;
+&lt;ol&gt;
+	&lt;li&gt;Go to the Branches view of your repository&lt;/li&gt;
+	&lt;li&gt;Click the + button on your Master branch to create a new branch - name this &#39;gh-pages&#39;&lt;/li&gt;
+	&lt;li&gt;Click the Publish button to push it to GitHub&lt;/li&gt;
+	&lt;li&gt;Use the bottom left menu to checkout the Master branch, if you&#39;re not working in the Master branch&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Each time you want to update your Project Page, just run these steps to sync your Master branch into your gh-pages branch within the GitHub Mac App:&lt;/p&gt;
+&lt;ol&gt;
+	&lt;li&gt;Switch to Branches view&lt;/li&gt;
+	&lt;li&gt;Click the Merge View button to display the Merge view&lt;/li&gt;
+	&lt;li&gt;Drag the Master branch to the left slot &amp;amp; the gh-pages branch to the right slot&lt;/li&gt;
+	&lt;li&gt;Click the Merge Branches button&lt;/li&gt;
+	&lt;li&gt;Use the bottom left menu to checkout the gh-pages branch&lt;/li&gt;
+	&lt;li&gt;Click the Branch in Sync button to force a synchronization&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+  </item>
+  
+  <item>
+    <title>Pick as a replacement for Digital Color Meter in Mac OS X Lion</title>
+    <link>http://blog.jameschevalier.us/pick-as-a-replacement-for-digital-color-meter-in-mac-os-x-lion/</link>
+
+    <pubDate>2012-01-30T00:00:00-05:00</pubDate>
+    <updated>2012-01-30T00:00:00-05:00</updated>
+    <id>http://blog.jameschevalier.us/pick-as-a-replacement-for-digital-color-meter-in-mac-os-x-lion/</id>
+    <content type="html">&lt;p&gt;In previous versions of &lt;a href=&quot;http://www.apple.com/macosx/&quot; target=&quot;_blank&quot;&gt;Mac OS X&lt;/a&gt;, I would use &lt;a href=&quot;http://en.wikipedia.org/wiki/DigitalColor_Meter&quot; target=&quot;_blank&quot;&gt;Digital Color Meter&lt;/a&gt; to hover over parts of my screen to get the HEX color code from certain images. In Mac OS X Lion, however, Digital Color Meter no longer provides hex color values by default. While it&#39;s possible to get Digital Color Meter to display &lt;a href=&quot;http://www.w3schools.com/html/html_colors.asp&quot; target=&quot;_blank&quot;&gt;HEX values&lt;/a&gt;, it is quite a clunky process of diving into the View menu every time the app is opened. Also, the values it displays now are only the two digit codes:&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img title=&quot;Digial Color Meter&quot; src=&quot;/blog.jameschevalier.us/assets/attachments/Digial-Color-Meter.png&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;&lt;small&gt;Digital Color Meter&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt;I just grabbed &lt;a href=&quot;http://click.linksynergy.com/fs-bin/click?id=vwHUN9G4nyY&amp;amp;subid=&amp;amp;offerid=146261.1&amp;amp;type=10&amp;amp;tmpid=3909&amp;amp;RD_PARM1=http%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fpick%2Fid494486540%3Fmt%3D12&quot;&gt;Pick&lt;/a&gt;, and it does the job nicely ... And for free!&lt;/p&gt;
+
+&lt;p&gt;Pick is invoked either through the Menu bar or the ⇧⌘L keyboard shortcut. It turns your cursor into a large magnifying-glass-type device that it calls the Loupe. This displays a small area of your screen at the 1 pixel level. The HEX value for each pixel you hover over is displayed within the Loupe.&lt;br /&gt;
+You can left click to copy the HEX value (in the format you choose in the program&#39;s Preferences) to your clipboard. You can also right click to choose a different format to copy your color code in:&lt;/p&gt;
+
+&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img title=&quot;Pick&quot; src=&quot;/blog.jameschevalier.us/assets/attachments/Pick.png&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;&lt;small&gt;Pick&lt;/small&gt;&lt;/p&gt;
+
+&lt;h4&gt;Update:&lt;/h4&gt;
+&lt;p&gt;It looks like Pick is no more. I&#39;ve been using &lt;a href=&quot;http://click.linksynergy.com/fs-bin/click?id=vwHUN9G4nyY&amp;amp;subid=&amp;amp;offerid=146261.1&amp;amp;type=10&amp;amp;tmpid=3909&amp;amp;RD_PARM1=https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fsip%2Fid507257563%3Fmt%3D12&quot;&gt;Sip&lt;/a&gt; instead. You can read about that &lt;a href=&quot;/sip-as-a-replacement-for-pick-as-a-replacement-for-digital-color-meter-in-mac-os-x&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </item>
+  
+  <item>
+    <title>View the changes between two branches of a git repository in SourceTree</title>
+    <link>http://blog.jameschevalier.us/view-the-changes-between-two-branches-of-a-git-repository-in-sourcetree/</link>
+
+    <pubDate>2012-01-26T00:00:00-05:00</pubDate>
+    <updated>2012-01-26T00:00:00-05:00</updated>
+    <id>http://blog.jameschevalier.us/view-the-changes-between-two-branches-of-a-git-repository-in-sourcetree/</id>
+    <content type="html">&lt;p&gt;I use &lt;a title=&quot;Git&quot; href=&quot;http://git-scm.com/&quot; target=&quot;_blank&quot;&gt;git&lt;/a&gt; for all my projects, because of how easy it is to deploy new versions &amp;amp; because of how easy it is to maintain two (or more) different versions of one project. I&#39;ll be talking a little bit about that second feature in this post.&lt;/p&gt;
+
+&lt;p&gt;I typically separate my projects into two branches:&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;The Master branch is the production branch. This is the &quot;&lt;a title=&quot;Nigel&#39;s Guitar Room&quot; href=&quot;http://youtu.be/g7-5io1muSQ&quot; target=&quot;_blank&quot;&gt;Look... still has the old tag on, never even played it. Don&#39;t touch it! Don&#39;t point! It can&#39;t be played. That&#39;s it, you&#39;ve seen enough of that one.&lt;/a&gt;&quot; branch.&lt;/li&gt;
+	&lt;li&gt;I create a second branch just for development, which is where I do all my actual work.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I don&#39;t make any actual commits to the Master branch. All of my work is done within the development branch, and I merge the development branch into the Master branch when I&#39;m ready to deploy a release. Sometimes I&#39;ll work so much on the development branch that I&#39;ll forget all the changes that I&#39;ve made since the last merge. If that happens, I turn to SourceTree so that I can view the differences between the last merge and the merge I&#39;m about to complete. To do that, I open the repository in &lt;a title=&quot;SourceTree&quot; href=&quot;http://www.sourcetreeapp.com/&quot; target=&quot;_blank&quot;&gt;SourceTree&lt;/a&gt; (free in the &lt;a title=&quot;SourceTree in the Mac App Store&quot; href=&quot;http://click.linksynergy.com/fs-bin/click?id=vwHUN9G4nyY&amp;amp;subid=&amp;amp;offerid=146261.1&amp;amp;type=10&amp;amp;tmpid=3909&amp;amp;RD_PARM1=http%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fsourcetree-git-hg%2Fid411678673%3Fmt%3D12&quot; target=&quot;_blank&quot;&gt;Mac App Store&lt;/a&gt;) and click on a branch:&lt;/p&gt;
+
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;img title=&quot;Select A Branch&quot; src=&quot;/blog.jameschevalier.us/assets/attachments/st01.png&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;&lt;small&gt;Select A Branch&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt;This displays all of the commits for all branches in the top middle window pane. You can kind of see the dev branch in the screen shot above, which is in blue. When I scroll down through the list of commits, I eventually come to the last time that I merged the development branch into the Master branch. This is the last &quot;release version&quot; of the project &amp;amp; I select this entry by clicking it:&lt;/p&gt;
+
+&lt;p style=&quot;text-align:center;&quot;&gt;&lt;img title=&quot;Select the previous merge&quot; src=&quot;/blog.jameschevalier.us/assets/attachments/st02.png&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;&lt;small&gt;Select the previous merge&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt;Then I scroll all the way back up to the top of the list of commits. I ⌘-click (command-click ... pretzel-click ... however you refer to it) the very latest commit. This displays, in the bottom left window pane, a list of files that were changed between the last merge and the latest commit. I click through each file, which displays the line-by-line changes in the bottom right window pane, double checking all the changes in order to remind myself of everything I&#39;ve done. This helps me remember whether I&#39;ve made any drastic changes that will require further action surrounding deployment.&lt;/p&gt;
+
+&lt;p&gt;After I&#39;m comfortable with the changes that will go through, I go back to the &lt;a title=&quot;GitHub for Mac&quot; href=&quot;http://mac.github.com/&quot; target=&quot;_blank&quot;&gt;GitHub Mac App&lt;/a&gt;. I&#39;m much more comfortable doing the actual git work with this app, because of how simple it is. I don&#39;t have a very in-depth knowledge of git, and the &lt;a title=&quot;GitHub&quot; href=&quot;https://github.com/&quot; target=&quot;_blank&quot;&gt;GitHub&lt;/a&gt; App really keeps me from being able to do much harm.&lt;/p&gt;
+</content>
+  </item>
+  
+  <item>
+    <title>Using a custom version of Git on Mac OS X Lion</title>
+    <link>http://blog.jameschevalier.us/using-a-custom-version-of-git-on-mac-os-x-lion/</link>
+
+    <pubDate>2012-01-20T00:00:00-05:00</pubDate>
+    <updated>2012-01-20T00:00:00-05:00</updated>
+    <id>http://blog.jameschevalier.us/using-a-custom-version-of-git-on-mac-os-x-lion/</id>
+    <content type="html">&lt;p&gt;If you&#39;re using &lt;a title=&quot;git-osx-installer&quot; href=&quot;http://code.google.com/p/git-osx-installer/&quot; target=&quot;_blank&quot;&gt;git-osx-installer&lt;/a&gt; to install &lt;a title=&quot;Git&quot; href=&quot;http://git-scm.com/&quot; target=&quot;_blank&quot;&gt;Git&lt;/a&gt; on Mac OS X Lion, and &#39;git --version&#39; in Terminal isn&#39;t displaying the version you&#39;ve just installed, then your system is using the version of Git that&#39;s provided by &lt;a title=&quot;Xcode Developer Tools&quot; href=&quot;http://developer.apple.com/technologies/tools/&quot; target=&quot;_blank&quot;&gt;Xcode Developer Tools&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;To use the git-osx-installer version that you&#39;ve just installed, you&#39;ll need to edit the &lt;em&gt;/etc/paths&lt;/em&gt; file and add &quot;/usr/local/git/bin&quot; to the top of that file.&lt;/p&gt;
+
+&lt;p&gt;To open the file for editing, type &lt;code&gt;sudo nano /etc/paths&lt;/code&gt; in Terminal.  Add the &quot;/usr/local/git/bin&quot; line to the top of the file.  To write the file, and exit nano after making that change, type &lt;code&gt;Control-O&lt;/code&gt; then &lt;code&gt;Control-X&lt;/code&gt;. To allow the change to take place, you&#39;ll need to quit Terminal, then open it back up again.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;git --version&lt;/code&gt; should now report the newly installed git-osx-installer version of Git.&lt;/p&gt;
+</content>
+  </item>
+  
+  <item>
+    <title>How Multi-File Search in BBEdit improved my workflow</title>
+    <link>http://blog.jameschevalier.us/how-multi-file-search-in-bbedit-improved-my-workflow/</link>
+
+    <pubDate>2012-01-19T00:00:00-05:00</pubDate>
+    <updated>2012-01-19T00:00:00-05:00</updated>
+    <id>http://blog.jameschevalier.us/how-multi-file-search-in-bbedit-improved-my-workflow/</id>
+    <content type="html">&lt;p&gt;It&#39;s fairly common that I&#39;ll have to look through dozens of files for particular lines of text.
+Sometimes it&#39;s a set of log files that I need to find every instance of a certain action in...
+Sometimes it&#39;s a &lt;a title=&quot;CodeIgniter&quot; href=&quot;http://codeigniter.com/&quot; target=&quot;_blank&quot;&gt;CodeIgniter&lt;/a&gt; project that I need to find each instance of a function in...&lt;/p&gt;
+
+&lt;p&gt;In the past, I&#39;ve used &lt;a title=&quot;Grep on Wikipedia&quot; href=&quot;http://en.wikipedia.org/wiki/Grep&quot; target=&quot;_blank&quot;&gt;grep&lt;/a&gt; to do this. It allowed me to search an entire directory of files with one command, which was incredibly helpful. I still had to note the filenames that contained the search results, and open those files in an editor. After I was in the editor, I&#39;d have to do another search to actually get to the text that I was looking for.
+
+&lt;p&gt;Now, with &lt;a title=&quot;BBEdit in the Mac App Store&quot; href=&quot;http://click.linksynergy.com/fs-bin/click?id=vwHUN9G4nyY&amp;amp;subid=&amp;amp;offerid=146261.1&amp;amp;type=10&amp;amp;tmpid=3909&amp;amp;RD_PARM1=http%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fbbedit%2Fid404009241%3Fmt%3D12&quot; target=&quot;_blank&quot;&gt;BBEdit&lt;/a&gt;, I do one Multi-File Search and click the search results that I want to inspect closer. This opens the file in the lower half of the window - just below the search results in the same window. The file is opened directly to the line I need, with the search result highlighted. It&#39;s not just a display of the file, either, it&#39;s a fully functioning editor.&lt;/p&gt;
+
+&lt;p&gt;Fast searching.&lt;br /&gt;
+Instant access.&lt;br /&gt;
+Complete context.&lt;br /&gt;
+In-search editing.&lt;/p&gt;
+
+&lt;p&gt;&lt;a title=&quot;BBEdit in the Mac App Store&quot; href=&quot;http://click.linksynergy.com/fs-bin/click?id=vwHUN9G4nyY&amp;amp;subid=&amp;amp;offerid=146261.1&amp;amp;type=10&amp;amp;tmpid=3909&amp;amp;RD_PARM1=http%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fbbedit%2Fid404009241%3Fmt%3D12&quot; target=&quot;_blank&quot;&gt;BBEdit&lt;/a&gt; just replaced &lt;a title=&quot;Grep man page&quot; href=&quot;http://unixhelp.ed.ac.uk/CGI/man-cgi?grep&quot; target=&quot;_blank&quot;&gt;grep&lt;/a&gt; in my workflow.&lt;/p&gt;
+</content>
+  </item>
+  
+  <item>
+    <title>Little Corner: My Open Source Project To Make You A Better Website</title>
+    <link>http://blog.jameschevalier.us/little-corner-my-open-source-project-to-make-you-a-better-website/</link>
+
+    <pubDate>2011-05-23T00:00:00-04:00</pubDate>
+    <updated>2011-05-23T00:00:00-04:00</updated>
+    <id>http://blog.jameschevalier.us/little-corner-my-open-source-project-to-make-you-a-better-website/</id>
+    <content type="html">&lt;p&gt;A while back, I ran across two really cool profile/hub/aggregate website providers: &lt;a title=&quot;Flavors.me&quot; href=&quot;http://flavors.me&quot; target=&quot;_blank&quot;&gt;Flavors.me&lt;/a&gt; and &lt;a title=&quot;About.me&quot; href=&quot;http://about.me&quot; target=&quot;_blank&quot;&gt;About.me&lt;/a&gt;.  I really liked the idea of the personal hub page, and the way that both sites accomplish the design.  So, for my recent website redesign I decided to push my blog over to &lt;a title=&quot;James Chevalier&#39;s Blog&quot; href=&quot;http://blog.jameschevalier.us&quot; target=&quot;_blank&quot;&gt;http://blog.jameschevalier.us&lt;/a&gt; and use the base domain name as my own attempt to recreate what I saw Flavors &amp;amp; About doing.&lt;/p&gt;
+
+&lt;p&gt;I&#39;ve decided to call what came out of this idea &lt;a title=&quot;Little Corner on GitHub&quot; href=&quot;https://github.com/JamesChevalier/Little-Corner&quot; target=&quot;_blank&quot;&gt;Little Corner&lt;/a&gt;.  The source code of this project is available at &lt;a title=&quot;Little Corner on GitHub&quot; href=&quot;https://github.com/JamesChevalier/Little-Corner&quot; target=&quot;_blank&quot;&gt;GitHub&lt;/a&gt;, so you can even implement this for your own website.&lt;/p&gt;
+
+&lt;p&gt;I see this form of website as a more functional &quot;business card&quot; type website.  The main page is pretty simple, and static.  There are a few links which look like they&#39;ll bring the visitor off to other services, but what they&#39;re really doing is bringing the services into the site.  When a link is clicked, the right side of the page displays a translucent overlay on top of the full-screen background with the content of wherever that link would have gone to (&lt;a title=&quot;Twitter&quot; href=&quot;http://twitter.com&quot; target=&quot;_blank&quot;&gt;Twitter&lt;/a&gt;, &lt;a title=&quot;Foursquare&quot; href=&quot;http://foursquare.com&quot; target=&quot;_blank&quot;&gt;Foursquare&lt;/a&gt;, &lt;a title=&quot;Last.FM&quot; href=&quot;http://last.fm&quot; target=&quot;_blank&quot;&gt;Last.FM&lt;/a&gt;, etc) on top of that.&lt;/p&gt;
+
+&lt;p&gt;This has been a great opportunity to jump into a few &lt;a title=&quot;Application programming interface&quot; href=&quot;http://en.wikipedia.org/wiki/Application_programming_interface&quot; target=&quot;_blank&quot;&gt;APIs&lt;/a&gt;, as well.  Each of the external services that I&#39;m pulling data from is pulling that data through the service&#39;s API.  This makes for a fairly typical experience with a site like Twitter, but allows for some really cool things to happen with the information from sites like Last.FM or Foursquare.&lt;/p&gt;
+
+&lt;p&gt;I&#39;ve just barely started, so there&#39;s much more potential in what this &lt;a title=&quot;Open source&quot; href=&quot;http://en.wikipedia.org/wiki/Open_source&quot; target=&quot;_blank&quot;&gt;open source&lt;/a&gt; project could be.  While I was creating the first version of this project, Foursquare released a new version of their API ... I started getting into the &lt;a title=&quot;Twilio&quot; href=&quot;http://twilio.com&quot; target=&quot;_blank&quot;&gt;Twilio&lt;/a&gt; API ... And there&#39;s still so much customization to offer within the website itself!&lt;/p&gt;
+
+&lt;p&gt;You can see Little Corner in use on my own website &lt;a title=&quot;James Chevalier&quot; href=&quot;http://jameschevalier.us&quot; target=&quot;_blank&quot;&gt;right here&lt;/a&gt;, and you can either download or contribute to the project &lt;a title=&quot;Little Corner on GitHub&quot; href=&quot;https://github.com/JamesChevalier/Little-Corner&quot; target=&quot;_blank&quot;&gt;right here&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </item>
+  
+  <item>
+    <title>My Open Source 'Viral Launching Soon' Project</title>
+    <link>http://blog.jameschevalier.us/my-open-source-viral-launching-soon-project/</link>
+
+    <pubDate>2011-03-16T00:00:00-04:00</pubDate>
+    <updated>2011-03-16T00:00:00-04:00</updated>
+    <id>http://blog.jameschevalier.us/my-open-source-viral-launching-soon-project/</id>
+    <content type="html">&lt;p&gt;I really like the &quot;viral launching soon page&quot; that &lt;a href=&quot;http://launchrock.com&quot; target=&quot;_BLANK&quot;&gt;LaunchRock&lt;/a&gt; is doing, which started for them with Forkly&#39;s &lt;a href=&quot;http://blog.forkly.com/post/2341870004/a-viral-launching-soon-form&quot; target=&quot;_BLANK&quot;&gt;invite page&lt;/a&gt;. I decided to see if I could make something similar as part of my ongoing learn-by-doing attempt at web development, and it works (at least in that it isn&#39;t broken)!&lt;/p&gt;
+
+&lt;p&gt;So what I&#39;ve created is &lt;a href=&quot;https://github.com/JamesChevalier/Launch-Soon&quot; target=&quot;_BLANK&quot;&gt;Launch Soon&lt;/a&gt;, a drop-in PHP site that provides a viral launching soon page to collect users (well, their email addresses) before your actual launch date. The site is fairly standard in that it&#39;s collecting email addresses, but it also provides a unique URL to each user which keeps track of how many people they get to sign up. The idea is that you&#39;ll give preferential access to those who gather the most invites.&lt;/p&gt;
+
+&lt;p&gt;This is an early release, so there&#39;s still a lot of customization that hasn&#39;t been added in yet. The design is really nice, though! It&#39;s the result of me converting &lt;a href=&quot;http://twitter.com/melchoyce&quot;&gt;Mel Choyce&lt;/a&gt;&#39;s PSD file into CSS, which was yet another first for me. A huge thanks to her for saving me on this one!&lt;/p&gt;
+
+&lt;p&gt;It works by taking a person&#39;s email address, and creating a four-character hash out of it. It then inserts the email address, the hash, a zeroed &#39;invites&#39; field into a mysql database. The hash is used for this user&#39;s custom URL, which is used to keep track of their invites. When a person joins through a hashed URL, it will search the database for that hash, and increment the &#39;invites&#39; field for that other user. The idea is that the people who drum up the most invites will have preferred entry into your project.&lt;/p&gt;
+
+&lt;p&gt;This also seemed like a great opportunity to create my first github repository, so this project is available for download or collaboration &lt;a href=&quot;https://github.com/JamesChevalier/Launch-Soon&quot; target=&quot;_BLANK&quot;&gt;here&lt;/a&gt;. Ideally, someone out there will be able to use it as-is ... Or maybe someone will get some use out of it after some modification ... At the very least, I might get some constructive criticism.&lt;/p&gt;
+
+&lt;p&gt;Oh, and here&#39;s an example of the project in the wild: &lt;a href=&quot;http://feebaloo.com&quot; target=&quot;_BLANK&quot;&gt;feebaloo&lt;/a&gt; (which is another idea of mine - A network for developers who need beta testers of proven quality, and users who aren&#39;t satisfied with just consuming).&lt;/p&gt;
+
+&lt;h4&gt;Update:&lt;/h4&gt;
+&lt;p&gt;I&#39;ve re-written Launch Soon with &lt;a href=&quot;http://rubyonrails.org/&quot; target=&quot;_BLANK&quot;&gt;Ruby on Rails&lt;/a&gt;, connected it to &lt;a href=&quot;http://mailchimp.com&quot; target=&quot;_BLANK&quot;&gt;Mailchimp&lt;/a&gt;, and made it easy to deploy with &lt;a href=&quot;http://heroku.com&quot;&gt;Heroku&lt;/a&gt;. Read more about it &lt;a href=&quot;/web-project/launch-soon-is-a-heroku-ready-viral-coming-soon-page/&quot;&gt;here&lt;/a&gt;, or check it out &lt;a href=&quot;https://github.com/JamesChevalier/Launch-Soon&quot; target=&quot;_BLANK&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </item>
+  
+  <item>
+    <title>A Look At Three Stop Motion / Time-lapse iPhone Apps</title>
+    <link>http://blog.jameschevalier.us/a-look-at-three-stop-motion-time-lapse-iphone-apps/</link>
+
+    <pubDate>2011-01-22T00:00:00-05:00</pubDate>
+    <updated>2011-01-22T00:00:00-05:00</updated>
+    <id>http://blog.jameschevalier.us/a-look-at-three-stop-motion-time-lapse-iphone-apps/</id>
+    <content type="html">&lt;p&gt;I recently tried out a few iPhone apps so that I could play around with stop motion video, and I figured I&#39;d share my thoughts on each of them.  The three apps that I tried out were &lt;a title=&quot;iMotion on iTunes&quot; href=&quot;http://bit.ly/f49P9i&quot; target=&quot;_blank&quot;&gt;iMotion&lt;/a&gt;, &lt;a title=&quot;iTimeLapse Pro on iTunes&quot; href=&quot;http://bit.ly/g9RExC&quot; target=&quot;_blank&quot;&gt;iTimeLapse Pro&lt;/a&gt;, and &lt;a title=&quot;StopMotion Recorder on iTunes&quot; href=&quot;http://bit.ly/eoe8jI&quot; target=&quot;_blank&quot;&gt;StopMotion Recorder&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;While I was testing, I found that adding frames to existing videos can have a tendency to change the brightness levels, which throws off the color.  So, it&#39;s not usually a good idea to complete a whole project and then attempt to go back and add/edit individual frames; instead, try to get each frame right as you make the video.  This should be taken into consideration for some of the pro/con items listed below.&lt;/p&gt;
+
+&lt;p&gt;Another thing that I noticed is that the ability to set the FPS (Frames Per Second) value for the video is extremely important.  Sometimes the stop motion video being created is good to go with a low FPS, but sometimes the video needs to move quickly in order to keep that sense of fluid motion.&lt;/p&gt;
+
+&lt;p&gt;Below I&#39;ve listed each app&#39;s pros and cons.  The list of apps is ordered from what I thought was the best to what I thought was the worst.&lt;/p&gt;
+
+&lt;h3&gt;iMotion &lt;small&gt;The notes below are based on version 1.4&lt;/small&gt;&lt;/h3&gt;
+&lt;a href=&quot;http://click.linksynergy.com/fs-bin/click?id=vwHUN9G4nyY&amp;amp;subid=&amp;amp;offerid=146261.1&amp;amp;type=10&amp;amp;tmpid=3909&amp;amp;RD_PARM1=http://itunes.apple.com/us/app/imotion/id329296658%3Fmt%3D8&quot; target=&quot;itunes_store&quot;&gt;&lt;img style=&quot;border: 0;&quot; src=&quot;http://ax.phobos.apple.com.edgesuite.net/images/web/linkmaker/badge_appstore-lrg.gif&quot; alt=&quot;iMotion - Febo Studio&quot; /&gt;&lt;/a&gt;
+
+&lt;h5&gt;PROS&lt;/h5&gt;
+&lt;ul&gt;
+	&lt;li&gt;Big FPS range of 1-30 frames per second&lt;/li&gt;
+	&lt;li&gt;Ability to duplicate frames - great for adding pauses&lt;/li&gt;
+	&lt;li&gt;Preview the video (on a loop) without render&lt;/li&gt;
+	&lt;li&gt;Ability to inject frames at any time&lt;/li&gt;
+	&lt;li&gt;Offers automatic timelapse mode with number of photos &amp;amp; interval&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5&gt;CONS&lt;/h5&gt;
+&lt;ul&gt;
+	&lt;li&gt;A little slow on the photo-taking... it definitely seems slow next to the freakishly fast &#39;StopMotion Recorder&#39;, so this app&#39;s speed is probably normal&lt;/li&gt;
+	&lt;li&gt;The preview loop is a little jolting, especially if you&#39;re previewing early on in your creation or previewing a short clip&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr&gt;
+
+&lt;h3&gt;iTimeLapse Pro &lt;small&gt;The notes below are based on version 1.1&lt;/small&gt;&lt;/h3&gt;
+&lt;a href=&quot;http://click.linksynergy.com/fs-bin/click?id=vwHUN9G4nyY&amp;amp;subid=&amp;amp;offerid=146261.1&amp;amp;type=10&amp;amp;tmpid=3909&amp;amp;RD_PARM1=http://itunes.apple.com/us/app/itimelapse-pro-time-lapse/id335866860%3Fmt%3D8&quot; target=&quot;itunes_store&quot;&gt;&lt;img style=&quot;border: 0;&quot; src=&quot;http://ax.phobos.apple.com.edgesuite.net/images/web/linkmaker/badge_appstore-lrg.gif&quot; alt=&quot;iTimeLapse Pro - Time Lapse videos - Laan Labs&quot; /&gt;&lt;/a&gt;
+
+&lt;h5&gt;PROS&lt;/h5&gt;
+&lt;ul&gt;
+	&lt;li&gt;Unlimited (9,999) frames&lt;/li&gt;
+	&lt;li&gt;Seems like unlimited frame rate, but the app started crashing before I could verify&lt;/li&gt;
+	&lt;li&gt;Will also do automatic time-lapse&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5&gt;CONS&lt;/h5&gt;
+&lt;ul&gt;
+	&lt;li&gt;Cannot insert frames to existing videos&lt;/li&gt;
+	&lt;li&gt;Awkward &quot;take photo&quot; location&lt;/li&gt;
+	&lt;li&gt;The &quot;take photo&quot; spot (can&#39;t quite call it a button, since it&#39;s just text) is too small &amp;amp; is crowded by other UI elements&lt;/li&gt;
+	&lt;li&gt;It takes a long time to take photos&lt;/li&gt;
+	&lt;li&gt;It takes a long time to render videos&lt;/li&gt;
+	&lt;li&gt;No preview before rendering&lt;/li&gt;
+	&lt;li&gt;The app started crashing when I tried rendering videos, and exporting to camera roll failed with error&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr&gt;
+
+&lt;h3&gt;StopMotion Recorder &lt;small&gt;The notes below are based on version 1.2.1&lt;/small&gt;&lt;/h3&gt;
+&lt;a href=&quot;http://click.linksynergy.com/fs-bin/click?id=vwHUN9G4nyY&amp;amp;subid=&amp;amp;offerid=146261.1&amp;amp;type=10&amp;amp;tmpid=3909&amp;amp;RD_PARM1=http://itunes.apple.com/us/app/stopmotion-recorder/id373313019%3Fmt%3D8&quot; target=&quot;itunes_store&quot;&gt;&lt;img style=&quot;border: 0;&quot; src=&quot;http://ax.phobos.apple.com.edgesuite.net/images/web/linkmaker/badge_appstore-lrg.gif&quot; alt=&quot;StopMotion Recorder - graf&quot; /&gt;&lt;/a&gt;
+
+&lt;h5&gt;PROS&lt;/h5&gt;
+&lt;ul&gt;
+	&lt;li&gt;Takes photos incredibly fast&lt;/li&gt;
+	&lt;li&gt;Grid is a nice feature to help line things up a bit more&lt;/li&gt;
+	&lt;li&gt;The UI has good character, without taking away from the experience of using the app&lt;/li&gt;
+	&lt;li&gt;It&#39;s fun&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5&gt;CONS&lt;/h5&gt;
+&lt;ul&gt;
+	&lt;li&gt;Video quality is noticeably pixelated - I consider this a simple toy app until this is fixed&lt;/li&gt;
+	&lt;li&gt;Limit of 150 frames (using an iPhone 4, with high/large setting)&lt;/li&gt;
+	&lt;li&gt;Cannot add to existing videos&lt;/li&gt;
+	&lt;li&gt;Cannot preview the video before rendering&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;small&gt;All of the links to iTunes in this post are affiliate links.&lt;/span&gt;&lt;/p&gt;
+</content>
+  </item>
+  
+  <item>
+    <title>Fun With Snowfall Prediction Across The United States</title>
+    <link>http://blog.jameschevalier.us/fun-with-snowfall-prediction-across-the-united-states/</link>
+
+    <pubDate>2011-01-21T00:00:00-05:00</pubDate>
+    <updated>2011-01-21T00:00:00-05:00</updated>
+    <id>http://blog.jameschevalier.us/fun-with-snowfall-prediction-across-the-united-states/</id>
+    <content type="html">&lt;p&gt;&lt;a href=&quot;https://blizzalert.com/&quot; target=&quot;_blank&quot;&gt;Blizzalert&lt;/a&gt; uses NOAA’s National Weather Service to get snowfall predictions for 400 ski areas across the United States, which is really really close to 100% coverage.&lt;br&gt;I took a few minutes today to play with some of the data that I’ve collected, and one of the calculations surprised me enough that I think I’m going to keep an eye on it for the rest of the winter. Here’s what I did (it’s going to get a little geeky in here, but it’s worth it)...&lt;/p&gt;
+
+&lt;p&gt;
+  I wrote up some quick PHP to pull all of the current mountain data out of the database, then I sorted everything into an array so that each mountain had three entries (today, tomorrow, and the next day) which each contained the total projected snowfall for that day. This only required a little bit of work, because the snowfall amounts are separated into 6 hour chunks across a 24 hour period. Using this, I was able to do some fun stuff – I’ll talk about my two favorites:
+  &lt;ol&gt;
+    &lt;li&gt;I sorted and compared every mountain and every day to find which day at which mountain would get the most snow. Out of all 400 ski areas across the United States, it turns out that tomorrow Lost Trail Powder Mountain is projected to get the most snow at 18 inches!&lt;/li&gt;
+    &lt;li&gt;I took every mountain’s snowfall prediction for tomorrow, January 22nd, and I added it all up. I learned that the United States is predicted to get 586 inches of snow tomorrow!&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/p&gt;
+
+&lt;p&gt;I’ll be collecting this information for the rest of the winter, and I can’t wait to see what this season adds up to. Follow &lt;a href=&quot;http://twitter.com/theblizzalert&quot; target=&quot;_blank&quot;&gt;@TheBlizzalert&lt;/a&gt; on Twitter if you’re interested in hearing about it, because I’ll be letting everyone know which mountain will be getting the most snow &amp;amp; how much snow tomorrow will bring.&lt;/p&gt;
+
+&lt;p&gt;Better yet, go sign up for &lt;a href=&quot;https://blizzalert.com/&quot; target=&quot;_blank&quot;&gt;Blizzalert&lt;/a&gt; now because it’s easier to get a text message for the mountains that matter to you!&lt;/p&gt;
+</content>
+  </item>
+  
+</channel>
+</rss>

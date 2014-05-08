@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <title>James Chevalier | Make a GitHub Project Page that's an exact mirror of your Master branch</title>
+
+  <link rel="stylesheet" href="/blog.jameschevalier.us/assets/css/foundation.min.css">
+  <link rel="stylesheet" href="/blog.jameschevalier.us/assets/css/app.css">
+  <link rel="stylesheet" href="/blog.jameschevalier.us/assets/css/pygments.css">
+
+  <style type="text/css">
+    body,html{height:100%;}
+    body{background: url(http://jameschevalier.us/assets/bg.jpg) center center fixed no-repeat;-moz-background-size: cover;background-size: cover;}
+    div.panel{-moz-border-radius: 12px;-webkit-border-radius: 12px;border-radius: 12px;background: rgb(255,255,255);background: rgba(255,255,255,.8);}
+  </style>
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-6651820-22']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+
+  <div class="fixed">
+    <nav class="top-bar">
+      <ul>
+        <li class="name"><h1><a href="http://blog.jameschevalier.us">James Chevalier</a></h1></li>
+        <li class="toggle-topbar"><a href="#"></a></li>
+      </ul>
+      <section>
+        <ul class="left">
+          <li><a href="http://jameschevalier.us">Site</a></li>
+          <li><a href="http://blog.jameschevalier.us">Blog</a></li>
+          <li><a href="/blog.jameschevalier.us/tags">Tags</a></li>
+        </ul>
+
+        <ul class="right">
+          <li><a href="/blog.jameschevalier.us/feed"><img src="/blog.jameschevalier.us/assets/images/rss.png" alt="RSS" /></a></li>
+        </ul>
+      </section>
+    </nav>
+  </div>
+
+  <div class="row" style="margin-top:67px;">
+    <div class="twelve columns centered">
+      <div class="panel">
+        <span class="radius secondary label">31 Jan 2012</span>
+<h2>Make a GitHub Project Page that's an exact mirror of your Master branch</h2>
+<hr>
+
+<p>GitHub has a <a href="http://pages.github.com/" target="_blank">Project Pages</a> feature that creates a webpage based on the content of the gh-pages branch of a repository. I asked, and subsequently answered, the question of how to get the Project Page to be an exact mirror of the Master branch over on <a href="http://stackoverflow.com/questions/9069165/can-i-make-the-gh-pages-branch-of-my-git-repository-a-mirror-of-the-master-branc" target="_blank">Stack Overflow</a>.</p>
+
+<p>One way I <a href="http://stackoverflow.com/questions/1705224/github-how-to-include-files-from-master-in-new-git-branch-gh-pages" target="_blank">found</a> is to run the following command, which sets a configuration setting that causes every subsequent instance of <code>git push</code> to push the Master branch of the repository into the gh-pages branch:
+<code>git config --add remote.origin.push +refs/heads/master:refs/heads/gh-pages</code></p>
+
+<p>The trouble with this solution is that I'm using the <a href="http://mac.github.com/" target="_blank">GitHub Mac App</a>, which doesn't use a strict <code>git push</code>. According to <a href="http://mac.github.com/help.html" target="_blank">their Help page</a>, it does a <code>git pull --rebase</code>. Additionally, even when I select Push from the Repository menu, my git config line isn't adhered to. I'm not sure what's up with that...</p>
+
+<p>I ran through a bunch of my own tests, trying to figure out how this branch mirroring can be done in a GitHub-For-Mac-App-Friendly way. It doesn't seem like you need to go through the exact process they've <a href="http://pages.github.com/" target="_blank">described</a> to create the gh-pages branch. Over there, they provide the following process along with the disclaimer "Caution: make your working directory clean before you do this (either stash or commit), otherwise this will lose any changes you've made to your project since the last commit.":
+<div class="highlight"><pre><code class="bash"><span class="nb">cd</span> /path/to/repo-name
+git symbolic-ref HEAD refs/heads/gh-pages
+rm .git/index
+git clean -fdx
+<span class="nb">echo</span> <span class="s2">&quot;My GitHub Page&quot;</span> <span class="p">&amp;</span>gt<span class="p">;</span> index.html
+git add .
+git commit -a -m <span class="s2">&quot;First pages commit&quot;</span>
+git push origin gh-pages
+</code></pre></div>
+</p>
+
+<p>Instead, you can simply create a new branch named gh-pages from within the GitHub Mac App. They probably don't instruct people to do this because what I'm accomplishing here isn't a typical scenario.</p>
+
+<p>You can take these steps to create the 'gh-pages' branch from within the GitHub Mac App:</p>
+<ol>
+	<li>Go to the Branches view of your repository</li>
+	<li>Click the + button on your Master branch to create a new branch - name this 'gh-pages'</li>
+	<li>Click the Publish button to push it to GitHub</li>
+	<li>Use the bottom left menu to checkout the Master branch, if you're not working in the Master branch</li>
+</ol>
+
+<p>Each time you want to update your Project Page, just run these steps to sync your Master branch into your gh-pages branch within the GitHub Mac App:</p>
+<ol>
+	<li>Switch to Branches view</li>
+	<li>Click the Merge View button to display the Merge view</li>
+	<li>Drag the Master branch to the left slot &amp; the gh-pages branch to the right slot</li>
+	<li>Click the Merge Branches button</li>
+	<li>Use the bottom left menu to checkout the gh-pages branch</li>
+	<li>Click the Branch in Sync button to force a synchronization</li>
+</ol>
+
+
+<h3>Tags</h3>
+<p>
+  
+    <a href="/blog.jameschevalier.us/tag/development" title="View posts tagged with &quot;development&quot;"><span class="radius label">development</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/git" title="View posts tagged with &quot;git&quot;"><span class="radius label">git</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/github" title="View posts tagged with &quot;github&quot;"><span class="radius label">github</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/mac" title="View posts tagged with &quot;mac&quot;"><span class="radius label">mac</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/stack-overflow" title="View posts tagged with &quot;stack-overflow&quot;"><span class="radius label">stack-overflow</span></a>
+  
+</p>
+
+<h3>Related Posts</h3>
+<p>
+  
+    <span class="radius secondary label">17 Dec 2013</span> <a href="/blog.jameschevalier.us/donoku">Donoku</a><br />
+  
+    <span class="radius secondary label">28 Dec 2012</span> <a href="/blog.jameschevalier.us/how-to-make-sublimelinter-work-with-ruby-rvm">How to make SublimeLinter work with Ruby &amp; RVM</a><br />
+  
+    <span class="radius secondary label">09 Dec 2012</span> <a href="/blog.jameschevalier.us/the-tech-behind-getting-blizzalert-into-its-third-season">The tech behind getting Blizzalert into its third season</a><br />
+  
+    <span class="radius secondary label">03 Nov 2012</span> <a href="/blog.jameschevalier.us/little-corner-is-now-a-Heroku-ready-Rails-app">Little-Corner is now a Heroku-ready Rails app</a><br />
+  
+    <span class="radius secondary label">14 Oct 2012</span> <a href="/blog.jameschevalier.us/sip-as-a-replacement-for-pick-as-a-replacement-for-digital-color-meter-in-mac-os-x">Sip as a replacement for Pick as a replacement for Digital Color Meter in Mac OS X</a><br />
+  
+</p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- JS Files -->
+  <script src="/blog.jameschevalier.us/assets/js/modernizr.foundation.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/jquery.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/jquery.placeholder.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/jquery.foundation.topbar.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/foundation.min.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/app.js"></script>
+  <script>$(document).foundationTopBar();</script>
+
+</body>
+</html>

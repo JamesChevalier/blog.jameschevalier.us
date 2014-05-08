@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <title>James Chevalier | How to Use Console to view the log files for your Rails App</title>
+
+  <link rel="stylesheet" href="/blog.jameschevalier.us/assets/css/foundation.min.css">
+  <link rel="stylesheet" href="/blog.jameschevalier.us/assets/css/app.css">
+  <link rel="stylesheet" href="/blog.jameschevalier.us/assets/css/pygments.css">
+
+  <style type="text/css">
+    body,html{height:100%;}
+    body{background: url(http://jameschevalier.us/assets/bg.jpg) center center fixed no-repeat;-moz-background-size: cover;background-size: cover;}
+    div.panel{-moz-border-radius: 12px;-webkit-border-radius: 12px;border-radius: 12px;background: rgb(255,255,255);background: rgba(255,255,255,.8);}
+  </style>
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-6651820-22']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+
+  <div class="fixed">
+    <nav class="top-bar">
+      <ul>
+        <li class="name"><h1><a href="http://blog.jameschevalier.us">James Chevalier</a></h1></li>
+        <li class="toggle-topbar"><a href="#"></a></li>
+      </ul>
+      <section>
+        <ul class="left">
+          <li><a href="http://jameschevalier.us">Site</a></li>
+          <li><a href="http://blog.jameschevalier.us">Blog</a></li>
+          <li><a href="/blog.jameschevalier.us/tags">Tags</a></li>
+        </ul>
+
+        <ul class="right">
+          <li><a href="/blog.jameschevalier.us/feed"><img src="/blog.jameschevalier.us/assets/images/rss.png" alt="RSS" /></a></li>
+        </ul>
+      </section>
+    </nav>
+  </div>
+
+  <div class="row" style="margin-top:67px;">
+    <div class="twelve columns centered">
+      <div class="panel">
+        <span class="radius secondary label">16 Jul 2012</span>
+<h2>How to Use Console to view the log files for your Rails App</h2>
+<hr>
+
+<p>By viewing the log for your Rails app from within Console, you can quickly clear your view of the log between tests so that you don't have to sift through irrelevant data. Just use the <strong>Clear Display</strong> button before accessing the site. It's non-destructive, so navigating away from the log file &amp; then viewing it again will display the entire log file. You can also delete the log file right from Console to keep it from getting out of hand.</p>
+
+<p>If you're using Pow, run these commands in the Terminal:
+<div class="highlight"><pre><code class="bash"><span class="nb">cd</span> ~/Library/Logs/Pow/apps
+ln -s /path/to/your/rails/app/log name-of-your-rails-app
+</code></pre></div>
+</p>
+
+<p>Now you can view the logs in Console under the FILES section in ~/Library/Logs/Pow/apps/name-of-your-rails-app/development.log</p>
+
+<p>If you're not using Pow (<a title="You're not using Pow?!" href="/thoughts/pow-makes-multi-site-rails-apps-easy/">you're not using Pow?!</a>), run these commands in the Terminal:
+<div class="highlight"><pre><code class="bash"><span class="nb">cd</span> ~/Library/Logs
+mkdir Rails
+<span class="nb">cd </span>Rails
+ln -s /path/to/your/rails/app/logs name-of-your-rails-app
+</code></pre></div>
+</p>
+
+<p>Now you can view the logs in Console under the FILES section in ~/Library/Logs/Rails/name-of-your-rails-app/development.log</p>
+
+<h5>Update:</h5>
+<p>Mountain Lion removed the feature of Console being able to display symlinked folders. I've looked around for another way to add folders to Console, but I haven't found anything really useful yet.</p>
+
+<p>The only fix I have at the moment is to ⌘-o within Console, navigate into the symlink in Pow's log folder, and open the development.log file. This will keep the file open in Console, at the bottom of the log list. It's a serious pain for anyone with multiple Rails apps, though, because then they're all listed in Console as 'development.log'.</p>
+
+
+<h3>Tags</h3>
+<p>
+  
+    <a href="/blog.jameschevalier.us/tag/console" title="View posts tagged with &quot;console&quot;"><span class="radius label">console</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/development" title="View posts tagged with &quot;development&quot;"><span class="radius label">development</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/mac" title="View posts tagged with &quot;mac&quot;"><span class="radius label">mac</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/mac-os-x" title="View posts tagged with &quot;mac-os-x&quot;"><span class="radius label">mac-os-x</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/pow" title="View posts tagged with &quot;pow&quot;"><span class="radius label">pow</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/rails" title="View posts tagged with &quot;rails&quot;"><span class="radius label">rails</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/ruby-on-rails" title="View posts tagged with &quot;ruby-on-rails&quot;"><span class="radius label">ruby-on-rails</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/terminal" title="View posts tagged with &quot;terminal&quot;"><span class="radius label">terminal</span></a>
+  
+</p>
+
+<h3>Related Posts</h3>
+<p>
+  
+    <span class="radius secondary label">17 Dec 2013</span> <a href="/blog.jameschevalier.us/donoku">Donoku</a><br />
+  
+    <span class="radius secondary label">28 Dec 2012</span> <a href="/blog.jameschevalier.us/how-to-make-sublimelinter-work-with-ruby-rvm">How to make SublimeLinter work with Ruby &amp; RVM</a><br />
+  
+    <span class="radius secondary label">09 Dec 2012</span> <a href="/blog.jameschevalier.us/the-tech-behind-getting-blizzalert-into-its-third-season">The tech behind getting Blizzalert into its third season</a><br />
+  
+    <span class="radius secondary label">03 Nov 2012</span> <a href="/blog.jameschevalier.us/little-corner-is-now-a-Heroku-ready-Rails-app">Little-Corner is now a Heroku-ready Rails app</a><br />
+  
+    <span class="radius secondary label">14 Oct 2012</span> <a href="/blog.jameschevalier.us/sip-as-a-replacement-for-pick-as-a-replacement-for-digital-color-meter-in-mac-os-x">Sip as a replacement for Pick as a replacement for Digital Color Meter in Mac OS X</a><br />
+  
+</p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- JS Files -->
+  <script src="/blog.jameschevalier.us/assets/js/modernizr.foundation.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/jquery.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/jquery.placeholder.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/jquery.foundation.topbar.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/foundation.min.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/app.js"></script>
+  <script>$(document).foundationTopBar();</script>
+
+</body>
+</html>

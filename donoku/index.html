@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <title>James Chevalier | Donoku</title>
+
+  <link rel="stylesheet" href="/blog.jameschevalier.us/assets/css/foundation.min.css">
+  <link rel="stylesheet" href="/blog.jameschevalier.us/assets/css/app.css">
+  <link rel="stylesheet" href="/blog.jameschevalier.us/assets/css/pygments.css">
+
+  <style type="text/css">
+    body,html{height:100%;}
+    body{background: url(http://jameschevalier.us/assets/bg.jpg) center center fixed no-repeat;-moz-background-size: cover;background-size: cover;}
+    div.panel{-moz-border-radius: 12px;-webkit-border-radius: 12px;border-radius: 12px;background: rgb(255,255,255);background: rgba(255,255,255,.8);}
+  </style>
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-6651820-22']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+
+  <div class="fixed">
+    <nav class="top-bar">
+      <ul>
+        <li class="name"><h1><a href="http://blog.jameschevalier.us">James Chevalier</a></h1></li>
+        <li class="toggle-topbar"><a href="#"></a></li>
+      </ul>
+      <section>
+        <ul class="left">
+          <li><a href="http://jameschevalier.us">Site</a></li>
+          <li><a href="http://blog.jameschevalier.us">Blog</a></li>
+          <li><a href="/blog.jameschevalier.us/tags">Tags</a></li>
+        </ul>
+
+        <ul class="right">
+          <li><a href="/blog.jameschevalier.us/feed"><img src="/blog.jameschevalier.us/assets/images/rss.png" alt="RSS" /></a></li>
+        </ul>
+      </section>
+    </nav>
+  </div>
+
+  <div class="row" style="margin-top:67px;">
+    <div class="twelve columns centered">
+      <div class="panel">
+        <span class="radius secondary label">17 Dec 2013</span>
+<h2>Donoku</h2>
+<hr>
+
+<p>I poked around at my first Sinatra project the other day: <a href="https://github.com/JamesChevalier/donoku">Donoku</a>.
+It's a simple two-page site to take donations through <a href="https://stripe.com/">Stripe</a> <a href="https://stripe.com/blog/stripe-checkout">Checkout</a>. It's built to be deployed to <a href="https://heroku.com">Heroku</a> &amp; forces SSL, since Heroku gives its "appname.herokuapp.com" domains SSL access for free.</p>
+
+<p>I've already used Donoku twice on my own! Once to accept donations for <a href="http://citystrides.com">CityStrides</a>, and once to accept donations for my <a href="http://jimforward6.com">campaign</a> to be Holyoke's Ward 6 City Councilor.</p>
+
+<p>
+  To force SSL, I used the <a href="http://rubygems.org/gems/rack-ssl-enforcer">rack-ssl-enforcer</a> gem. It's really simple to use... Just add the gem to your Gemfile, then require it in your app.rb file &amp; add a single line to require SSL everywhere outside of localhost &amp; the test environment:<br />
+  <div class="highlight"><pre><code class="ruby">  <span class="nb">require</span> <span class="s1">&#39;rack/ssl-enforcer&#39;</span>
+  <span class="n">use</span> <span class="no">Rack</span><span class="o">::</span><span class="no">SslEnforcer</span><span class="p">,</span> <span class="n">except_hosts</span><span class="p">:</span> <span class="sr">/127.0.0.1$/</span><span class="p">,</span> <span class="ss">:except_environments</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span>
+  
+</code></pre></div>
+  You can see it in action at the top of <a href="https://github.com/JamesChevalier/donoku/blob/master/app.rb">Donoku's app.rb file</a>.
+</p>
+
+<p>There's a little bit of a <a href="http://mailchimp.com/">MailChimp</a> integration, as well. After the donation goes through, people are directed to the 'thank you' page that includes a mailing list signup form. There's nothing crazy going on, but it works.</p>
+
+<p>It's also one of my first attempts at using <a href="http://rubygems.org/gems/minitest">MiniTest</a> instead of <a href="http://rubygems.org/gems/rspec">rspec</a>. I like it just fine, but the familiarity that I have with rspec keeps me moving faster & the abundence of rspec documentation online gets me un-stuck quicker. I'm glad I tried it, but I'll be sticking with rspec (and might even switch Donoku over at some point).</p>
+
+
+<h3>Tags</h3>
+<p>
+  
+    <a href="/blog.jameschevalier.us/tag/donoku" title="View posts tagged with &quot;donoku&quot;"><span class="radius label">donoku</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/heroku" title="View posts tagged with &quot;heroku&quot;"><span class="radius label">heroku</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/mailchimp" title="View posts tagged with &quot;mailchimp&quot;"><span class="radius label">mailchimp</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/minitest" title="View posts tagged with &quot;minitest&quot;"><span class="radius label">minitest</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/sinatra" title="View posts tagged with &quot;sinatra&quot;"><span class="radius label">sinatra</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/stripe" title="View posts tagged with &quot;stripe&quot;"><span class="radius label">stripe</span></a>
+  
+</p>
+
+<h3>Related Posts</h3>
+<p>
+  
+    <span class="radius secondary label">28 Dec 2012</span> <a href="/blog.jameschevalier.us/how-to-make-sublimelinter-work-with-ruby-rvm">How to make SublimeLinter work with Ruby &amp; RVM</a><br />
+  
+    <span class="radius secondary label">09 Dec 2012</span> <a href="/blog.jameschevalier.us/the-tech-behind-getting-blizzalert-into-its-third-season">The tech behind getting Blizzalert into its third season</a><br />
+  
+    <span class="radius secondary label">03 Nov 2012</span> <a href="/blog.jameschevalier.us/little-corner-is-now-a-Heroku-ready-Rails-app">Little-Corner is now a Heroku-ready Rails app</a><br />
+  
+    <span class="radius secondary label">14 Oct 2012</span> <a href="/blog.jameschevalier.us/sip-as-a-replacement-for-pick-as-a-replacement-for-digital-color-meter-in-mac-os-x">Sip as a replacement for Pick as a replacement for Digital Color Meter in Mac OS X</a><br />
+  
+    <span class="radius secondary label">08 Oct 2012</span> <a href="/blog.jameschevalier.us/launch-soon-is-a-heroku-ready-viral-coming-soon-page">Launch Soon is a Heroku-ready viral Coming Soon page</a><br />
+  
+</p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- JS Files -->
+  <script src="/blog.jameschevalier.us/assets/js/modernizr.foundation.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/jquery.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/jquery.placeholder.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/jquery.foundation.topbar.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/foundation.min.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/app.js"></script>
+  <script>$(document).foundationTopBar();</script>
+
+</body>
+</html>

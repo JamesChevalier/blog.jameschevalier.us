@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+
+  <title>James Chevalier | View the changes between two branches of a git repository in SourceTree</title>
+
+  <link rel="stylesheet" href="/blog.jameschevalier.us/assets/css/foundation.min.css">
+  <link rel="stylesheet" href="/blog.jameschevalier.us/assets/css/app.css">
+  <link rel="stylesheet" href="/blog.jameschevalier.us/assets/css/pygments.css">
+
+  <style type="text/css">
+    body,html{height:100%;}
+    body{background: url(http://jameschevalier.us/assets/bg.jpg) center center fixed no-repeat;-moz-background-size: cover;background-size: cover;}
+    div.panel{-moz-border-radius: 12px;-webkit-border-radius: 12px;border-radius: 12px;background: rgb(255,255,255);background: rgba(255,255,255,.8);}
+  </style>
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-6651820-22']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+
+  <div class="fixed">
+    <nav class="top-bar">
+      <ul>
+        <li class="name"><h1><a href="http://blog.jameschevalier.us">James Chevalier</a></h1></li>
+        <li class="toggle-topbar"><a href="#"></a></li>
+      </ul>
+      <section>
+        <ul class="left">
+          <li><a href="http://jameschevalier.us">Site</a></li>
+          <li><a href="http://blog.jameschevalier.us">Blog</a></li>
+          <li><a href="/blog.jameschevalier.us/tags">Tags</a></li>
+        </ul>
+
+        <ul class="right">
+          <li><a href="/blog.jameschevalier.us/feed"><img src="/blog.jameschevalier.us/assets/images/rss.png" alt="RSS" /></a></li>
+        </ul>
+      </section>
+    </nav>
+  </div>
+
+  <div class="row" style="margin-top:67px;">
+    <div class="twelve columns centered">
+      <div class="panel">
+        <span class="radius secondary label">26 Jan 2012</span>
+<h2>View the changes between two branches of a git repository in SourceTree</h2>
+<hr>
+
+<p>I use <a title="Git" href="http://git-scm.com/" target="_blank">git</a> for all my projects, because of how easy it is to deploy new versions &amp; because of how easy it is to maintain two (or more) different versions of one project. I'll be talking a little bit about that second feature in this post.</p>
+
+<p>I typically separate my projects into two branches:</p>
+<ul>
+	<li>The Master branch is the production branch. This is the "<a title="Nigel's Guitar Room" href="http://youtu.be/g7-5io1muSQ" target="_blank">Look... still has the old tag on, never even played it. Don't touch it! Don't point! It can't be played. That's it, you've seen enough of that one.</a>" branch.</li>
+	<li>I create a second branch just for development, which is where I do all my actual work.</li>
+</ul>
+
+<p>I don't make any actual commits to the Master branch. All of my work is done within the development branch, and I merge the development branch into the Master branch when I'm ready to deploy a release. Sometimes I'll work so much on the development branch that I'll forget all the changes that I've made since the last merge. If that happens, I turn to SourceTree so that I can view the differences between the last merge and the merge I'm about to complete. To do that, I open the repository in <a title="SourceTree" href="http://www.sourcetreeapp.com/" target="_blank">SourceTree</a> (free in the <a title="SourceTree in the Mac App Store" href="http://click.linksynergy.com/fs-bin/click?id=vwHUN9G4nyY&amp;subid=&amp;offerid=146261.1&amp;type=10&amp;tmpid=3909&amp;RD_PARM1=http%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fsourcetree-git-hg%2Fid411678673%3Fmt%3D12" target="_blank">Mac App Store</a>) and click on a branch:</p>
+
+<p style="text-align:center;"><img title="Select A Branch" src="/blog.jameschevalier.us/assets/attachments/st01.png" alt="" /><br /><small>Select A Branch</small></p>
+
+<p>This displays all of the commits for all branches in the top middle window pane. You can kind of see the dev branch in the screen shot above, which is in blue. When I scroll down through the list of commits, I eventually come to the last time that I merged the development branch into the Master branch. This is the last "release version" of the project &amp; I select this entry by clicking it:</p>
+
+<p style="text-align:center;"><img title="Select the previous merge" src="/blog.jameschevalier.us/assets/attachments/st02.png" alt="" /><br /><small>Select the previous merge</small></p>
+
+<p>Then I scroll all the way back up to the top of the list of commits. I ⌘-click (command-click ... pretzel-click ... however you refer to it) the very latest commit. This displays, in the bottom left window pane, a list of files that were changed between the last merge and the latest commit. I click through each file, which displays the line-by-line changes in the bottom right window pane, double checking all the changes in order to remind myself of everything I've done. This helps me remember whether I've made any drastic changes that will require further action surrounding deployment.</p>
+
+<p>After I'm comfortable with the changes that will go through, I go back to the <a title="GitHub for Mac" href="http://mac.github.com/" target="_blank">GitHub Mac App</a>. I'm much more comfortable doing the actual git work with this app, because of how simple it is. I don't have a very in-depth knowledge of git, and the <a title="GitHub" href="https://github.com/" target="_blank">GitHub</a> App really keeps me from being able to do much harm.</p>
+
+
+<h3>Tags</h3>
+<p>
+  
+    <a href="/blog.jameschevalier.us/tag/developer-tools" title="View posts tagged with &quot;developer-tools&quot;"><span class="radius label">developer-tools</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/development" title="View posts tagged with &quot;development&quot;"><span class="radius label">development</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/git" title="View posts tagged with &quot;git&quot;"><span class="radius label">git</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/github" title="View posts tagged with &quot;github&quot;"><span class="radius label">github</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/mac" title="View posts tagged with &quot;mac&quot;"><span class="radius label">mac</span></a>
+  
+    <a href="/blog.jameschevalier.us/tag/sourcetree" title="View posts tagged with &quot;sourcetree&quot;"><span class="radius label">sourcetree</span></a>
+  
+</p>
+
+<h3>Related Posts</h3>
+<p>
+  
+    <span class="radius secondary label">17 Dec 2013</span> <a href="/blog.jameschevalier.us/donoku">Donoku</a><br />
+  
+    <span class="radius secondary label">28 Dec 2012</span> <a href="/blog.jameschevalier.us/how-to-make-sublimelinter-work-with-ruby-rvm">How to make SublimeLinter work with Ruby &amp; RVM</a><br />
+  
+    <span class="radius secondary label">09 Dec 2012</span> <a href="/blog.jameschevalier.us/the-tech-behind-getting-blizzalert-into-its-third-season">The tech behind getting Blizzalert into its third season</a><br />
+  
+    <span class="radius secondary label">03 Nov 2012</span> <a href="/blog.jameschevalier.us/little-corner-is-now-a-Heroku-ready-Rails-app">Little-Corner is now a Heroku-ready Rails app</a><br />
+  
+    <span class="radius secondary label">14 Oct 2012</span> <a href="/blog.jameschevalier.us/sip-as-a-replacement-for-pick-as-a-replacement-for-digital-color-meter-in-mac-os-x">Sip as a replacement for Pick as a replacement for Digital Color Meter in Mac OS X</a><br />
+  
+</p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- JS Files -->
+  <script src="/blog.jameschevalier.us/assets/js/modernizr.foundation.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/jquery.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/jquery.placeholder.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/jquery.foundation.topbar.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/foundation.min.js"></script>
+  <script src="/blog.jameschevalier.us/assets/js/app.js"></script>
+  <script>$(document).foundationTopBar();</script>
+
+</body>
+</html>
