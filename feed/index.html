@@ -11,21 +11,21 @@
   >
 <channel>
   <title type="text" xml:lang="en">James Chevalier</title>
-  <link>http://blog.jameschevalier.us</link>
+  <link>http://blog.jameschevalier.com</link>
   <updated>{{ site.time | date_to_xmlschema }}</updated>
-  <id>http://blog.jameschevalier.us</id>
+  <id>http://blog.jameschevalier.com</id>
   <author>
     <name>James Chevalier</name>
   </author>
-  <rights>Copyright (c) 2011-2012 James Chevalier</rights>
+  <rights>Copyright (c) 2011-2025 James Chevalier</rights>
   {% for post in site.posts limit:20 %}
   <item>
     <title>{{ post.title }}</title>
-    <link>http://blog.jameschevalier.us{{ post.url }}/</link>
+    <link>http://blog.jameschevalier.com{{ post.url }}/</link>
 
     <pubDate>{{ post.date | date_to_xmlschema }}</pubDate>
     <updated>{{ post.date | date_to_xmlschema }}</updated>
-    <id>http://blog.jameschevalier.us{{ post.url }}/</id>
+    <id>http://blog.jameschevalier.com{{ post.url }}/</id>
     <content type="html">{{ post.content | xml_escape }}</content>
   </item>
   {% endfor %}
